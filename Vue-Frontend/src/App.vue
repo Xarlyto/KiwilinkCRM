@@ -1,10 +1,14 @@
 <template>
   <v-app>
-    <v-toolbar flat>
+    <v-toolbar
+      flat
+      color="indigo lighten-1"
+      class="py-1"
+    >
       <!-- <v-toolbar-side-icon ></v-toolbar-side-icon> -->
       <v-toolbar-title>
-        <span class="pa-2 white--text font-weight-bold display-3 black">KiwiLink</span>
-        <span class="display-2">CRM</span>
+        <span class="px-2 white--text font-weight-bold display-3 black">KiwiLink</span>
+        <span class="display-1">CRM</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
