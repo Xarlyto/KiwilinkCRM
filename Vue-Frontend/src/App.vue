@@ -11,13 +11,13 @@
             xs12
             md8
           >
-            left
+            <teasers />
           </v-flex>
           <v-flex
             xs12
             md4
           >
-            right
+            <finder />
           </v-flex>
         </v-layout>
       </v-container>
@@ -28,10 +28,12 @@
 <script>
 import State from "./state.js";
 import ToolBar from "./cmp/ToolBar";
+import Teasers from "./cmp/Teasers";
+import Finder from "./cmp/Finder";
 
 export default {
   name: "App",
-  components: { ToolBar },
+  components: { ToolBar, Teasers, Finder },
   data() {
     return {};
   },
