@@ -7,19 +7,19 @@
     >
       <div class="row">
         <v-icon small>fa-user-circle</v-icon>
-        <span>{{t.Name}}</span>
+        <span>{{ t.Name }}</span>
       </div>
       <div class="row">
         <v-icon small>fa-phone-square</v-icon>
-        <span>{{t.Mobile}}</span>
+        <span>{{ t.Mobile }}</span>
       </div>
       <div class="row">
         <v-icon small>fa-graduation-cap</v-icon>
-        <span>{{t.Course}}</span>
+        <span>{{ t.Course }}</span>
       </div>
       <div class="row">
         <v-icon small>fa-university</v-icon>
-        <span>{{t.Institute}}</span>
+        <span>{{ t.Institute }}</span>
       </div>
       <v-divider></v-divider>
       <v-card-actions class="text-lg-right">
@@ -41,6 +41,7 @@
         </v-btn>
       </v-card-actions>
     </v-card>
+    {{"Test: "+test}}
   </div>
 </template>
 
@@ -50,7 +51,8 @@ import State from "../state.js";
 export default {
   data() {
     return {
-      teasers: []
+      teasers: [],
+      test: ""
     };
   },
 
@@ -62,6 +64,7 @@ export default {
 
   created() {
     this.teasers = State.Teasers;
+    this.test = State.SearchTerm;
   }
 };
 </script>

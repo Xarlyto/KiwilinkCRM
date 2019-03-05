@@ -3,6 +3,9 @@ class State {
     this.Client = null;
     this.Teasers = [];
     this.Tasks = [];
+    this.SearchByValue = "Name";
+    this.SearchByList = ["ID", "Name", "Phone", "Country"];
+    this.SearchTerm = "";
 
     this.LoadInitialData();
   }
@@ -23,8 +26,8 @@ class State {
         Course: "Diploma in political sciense",
         Institute: "PBS Institute"
       }
-    ]
+    ];
   }
 }
 
-export default (new State);
+export default new State();
