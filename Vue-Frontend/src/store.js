@@ -1,14 +1,10 @@
-class State {
-  constructor() {
-    this.Client = null;
-    this.Teasers = [];
-    this.Tasks = [];
-    this.SearchByValue = "Name";
-    this.SearchByList = ["ID", "Name", "Phone", "Country"];
-    this.SearchTerm = "";
-
-    this.LoadInitialData();
-  }
+export default {
+  Client: null,
+  Teasers: [],
+  Tasks: [],
+  SearchByValue: "Name",
+  SearchByList: ["ID", "Name", "Phone", "Country"],
+  SearchTerm: "",
 
   LoadInitialData() {
     this.Teasers = [
@@ -28,6 +24,5 @@ class State {
       }
     ];
   }
-}
+};
 
-export default new State();

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card
-      v-for="t in teasers"
+      v-for="t in Teasers"
       :key="t.ID"
       class="pa-3 ma-1"
     >
@@ -41,31 +41,12 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-    {{"Test: "+test}}
   </div>
 </template>
 
 <script>
-import State from "../state.js";
-
 export default {
-  data() {
-    return {
-      teasers: [],
-      test: ""
-    };
-  },
-
-  methods: {
-    loadClient() {
-      alert("load client");
-    }
-  },
-
-  created() {
-    this.teasers = State.Teasers;
-    this.test = State.SearchTerm;
-  }
+  store: ["Teasers"]
 };
 </script>
 

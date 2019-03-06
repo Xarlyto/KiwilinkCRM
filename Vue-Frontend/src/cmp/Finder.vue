@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mt-0 pt-0">
     <v-layout
       row
       wrap
@@ -14,7 +14,7 @@
       </v-flex>
       <v-flex sm8>
         <v-text-field
-          v-model="searchTerm"
+          v-model="SearchTerm"
           label="Search Term"
           append-icon="fa-search"
         ></v-text-field>
@@ -24,20 +24,9 @@
 </template>
 
 <script>
-import State from "../state.js";
-
 export default {
-  data() {
-    return {
-      SearchByValue: "",
-      SearchByList: [],
-      searchTerm: ""
-    };
-  },
-  created() {
-    this.SearchByValue = State.SearchByValue;
-    this.SearchByList = State.SearchByList;
-  }
+  store: ["SearchByList", "SearchByValue", "SearchTerm"],
+  methods: {}
 };
 </script>
 
