@@ -1,5 +1,5 @@
 <template>
-  <v-container class="mt-0 pt-0">
+  <v-container class="mt-0 py-0">
     <v-layout
       row
       wrap
