@@ -11,6 +11,7 @@
             xs12
             md8
           >
+            <client />
             <teasers />
           </v-flex>
           <v-flex
@@ -31,10 +32,11 @@ import ToolBar from "./cmp/ToolBar";
 import Teasers from "./cmp/Teasers";
 import Finder from "./cmp/Finder";
 import Tasks from "./cmp/Tasks";
+import Client from "./cmp/Client";
 
 export default {
   name: "App",
-  components: { ToolBar, Teasers, Finder, Tasks },
+  components: { ToolBar, Teasers, Finder, Tasks, Client },
   created() {
     this.$store.LoadInitialData();
   }
