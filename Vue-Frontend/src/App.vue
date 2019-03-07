@@ -42,3 +42,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.rounded {
+  border-radius: 7px;
+}
+</style>
+

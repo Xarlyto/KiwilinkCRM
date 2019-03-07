@@ -42,9 +42,8 @@ export default {
       }
     ]
 
-    this.Client = {
 
-    }
+    this.Client = {}
   }
 };
 

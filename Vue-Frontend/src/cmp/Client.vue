@@ -1,77 +1,162 @@
 <template>
   <v-card class="ma-1">
-    <v-layout
-      align-center
-      class="pl-2"
-    >
-      <v-item-group v-model="window">
-        <v-item
-          v-for="n in length"
-          :key="n"
-        >
-          <div slot-scope="{ active, toggle }">
-            <v-btn
-              :input-value="active"
-              icon
-              @click="toggle"
-            >
-              <v-icon>fa-circle</v-icon>
-            </v-btn>
-          </div>
-        </v-item>
-      </v-item-group>
 
-      <v-flex class="pa-0">
-        <v-window
+    <v-container>
+      <v-layout class="pl-2">
+        <v-item-group
           v-model="window"
-          vertical
+          class="grey lighten-4 rounded"
         >
-          <v-window-item>
-            <v-card flat>
-              <v-card-text class="pa-2">
-                <v-layout
-                  align-center
-                  class="my-4"
-                >
-                  <v-avatar color="indigo mx-4">
-                    <v-icon dark>fa-user-circle</v-icon>
-                  </v-avatar>
-                  <strong class="title">Personal Info</strong>
-                  <v-spacer></v-spacer>
-                </v-layout>
+          <v-item>
+            <div slot-scope="{ active, toggle }">
+              <v-btn
+                :input-value="active"
+                icon
+                @click="toggle"
+              >
+                <v-icon size="28">fa-user-circle</v-icon>
+              </v-btn>
+            </div>
+          </v-item>
 
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+          <v-item>
+            <div slot-scope="{ active, toggle }">
+              <v-btn
+                :input-value="active"
+                icon
+                @click="toggle"
+              >
+                <v-icon size="28">fa-university</v-icon>
+              </v-btn>
+            </div>
+          </v-item>
 
-              </v-card-text>
-            </v-card>
-          </v-window-item>
+          <v-item>
+            <div slot-scope="{ active, toggle }">
+              <v-btn
+                :input-value="active"
+                icon
+                @click="toggle"
+              >
+                <v-icon size="28">fa-plane-departure</v-icon>
+              </v-btn>
+            </div>
+          </v-item>
 
-          <v-window-item>
-            <v-card flat>
-              <v-card-text class="pa-2">
-                <v-layout
-                  align-center
-                  class="my-4"
-                >
-                  <v-avatar color="indigo mx-4">
-                    <v-icon dark>fa-user-circle</v-icon>
-                  </v-avatar>
-                  <strong class="title">Personal Info</strong>
-                  <v-spacer></v-spacer>
-                </v-layout>
+          <v-item>
+            <div slot-scope="{ active, toggle }">
+              <v-btn
+                :input-value="active"
+                icon
+                @click="toggle"
+              >
+                <v-icon size="28">fa-dollar-sign</v-icon>
+              </v-btn>
+            </div>
+          </v-item>
+        </v-item-group>
 
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+        <v-flex class="pa-3">
+          <v-window v-model="window">
+            <v-window-item>
+              <v-card
+                flat
+                class="pa-0"
+              >
+                <v-card-text class="pa-0">
+                  <v-layout
+                    align-center
+                    class="ma-0"
+                  >
+                    <h1 class="grey--text text--darken-2">Personal Info</h1>
+                  </v-layout>
+                  <v-layout
+                    ml-0
+                    py-0
+                  >
+                    <v-layout
+                      row
+                      wrap
+                    >
+                      <v-flex>
+                        <v-text-field
+                          class="ma-0 pa-0 mt-3"
+                          v-model="Client.Name"
+                          label="First Names"
+                          :readonly="readOnly"
+                        ></v-text-field>
+                        <v-text-field
+                          class="ma-0 pa-0 mt-3"
+                          v-model="Client.Mobile"
+                          label="Mobile"
+                          :readonly="readOnly"
+                        ></v-text-field>
+                      </v-flex>
+                      <v-flex>
+                        <v-text-field
+                          class="ma-0 pa-0 mt-3"
+                          v-model="Client.Surname"
+                          label="Surname"
+                          :readonly="readOnly"
+                        ></v-text-field>
+                        <v-text-field
+                          class="ma-0 pa-0 mt-3"
+                          v-model="Client.Landline"
+                          label="Land Line"
+                          :readonly="readOnly"
+                        ></v-text-field>
+                      </v-flex>
+                    </v-layout>
+                  </v-layout>
+                </v-card-text>
 
-              </v-card-text>
-            </v-card>
-          </v-window-item>
-        </v-window>
-      </v-flex>
-    </v-layout>
+                <v-card-actions class="text-lg-right pt-2">
+                  <v-btn
+                    small
+                    flat
+                    color="orange lighten-2"
+                    @click="readOnly= !readOnly"
+                    v-if="readOnly"
+                  >
+                    <v-icon
+                      size="20"
+                      class="mr-2"
+                    >fa-edit</v-icon>
+                    edit
+                  </v-btn>
+                  <v-btn
+                    small
+                    flat
+                    color="orange lighten-2"
+                    v-if="!readOnly"
+                  >
+                    <v-icon
+                      size="20"
+                      class="mr-2"
+                    >fa-save</v-icon>
+                    save
+                  </v-btn>
+                  <v-btn
+                    small
+                    flat
+                    color="red lighten-2"
+                  >
+                    <v-icon
+                      class="mr-2"
+                      size="20"
+                    >fa-trash-alt</v-icon>
+                    delete
+                  </v-btn>
+                </v-card-actions>
+
+              </v-card>
+            </v-window-item>
+
+          </v-window>
+        </v-flex>
+
+      </v-layout>
+    </v-container>
   </v-card>
 
 </template>
@@ -79,9 +164,11 @@
 <script>
 export default {
   data: () => ({
-    length: 4,
-    window: 0
-  })
+    window: 0,
+    readOnly: true
+  }),
+
+  store: ["Client"]
 };
 </script>
 
