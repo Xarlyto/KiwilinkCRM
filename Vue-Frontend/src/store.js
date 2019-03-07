@@ -41,6 +41,10 @@ export default {
         Content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius, ut. Porro, modi minus vero odit neque, voluptatum quo fuga sint inventore asperiores quis blanditiis architecto mollitia atque rerum? Illum, pariatur.",
       }
     ]
+
+    this.Client = {
+
+    }
   }
 };
 
