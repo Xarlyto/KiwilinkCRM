@@ -3,8 +3,8 @@ export default {
   Teasers: [],
   Tasks: [],
   SearchByValue: "Name",
-  SearchByList: ["ID", "Name", "Phone", "Country"],
   SearchTerm: "",
+  Lists: {},
 
   LoadInitialData() {
     this.Teasers = [
@@ -42,8 +42,44 @@ export default {
       }
     ]
 
-
     this.Client = {}
+
+    this.Lists = {
+      LeadSource: ["Google", "Facebook", "Newspaper"],
+      CourseCountry: ["America", "Australia"]
+    }
   }
 };
+
+
+/*
+Address:"kjhkjhkjhjh"
+ArrivalDate:"2019-03-04"
+Background:"kjhkjhh"
+CV:"jkh"
+Course:"kj"
+CourseCountry:"America"
+CourseDuration:"kjkj"
+CourseFee:"kj"
+CourseIntakeDate:"2019-03-05"
+CourseLink:"kjk"
+CourseStartDate:"2019-03-05"
+CommissionAmount: "jkhjkh"
+CommissionDate: "2019-03-05"
+Email1:"jh"
+Email2:"jkh"
+Institute:"jjj"
+Landline:"jkh"
+LeadSource:"Google"
+MinIELTS:"kjh"
+Mobile:"jh"
+Name:"jhjk"
+Passport:"jkh"
+PathwayProgram1:"jkj"
+PathwayProgram2:"kjkj"
+Surname:"jh"
+VisaAppliedDate:"2019-03-05"
+VisaApprovedDate:"2019-03-05"
+VisaStatus:"Applied"
+*/
 

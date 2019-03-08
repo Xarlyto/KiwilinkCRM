@@ -25,7 +25,10 @@
 
 <script>
 export default {
-  store: ["SearchByList", "SearchByValue", "SearchTerm"],
+  data: () => ({
+    SearchByList: ["ID", "Name", "Phone", "Country"]
+  }),
+  store: ["SearchByValue", "SearchTerm"],
   methods: {}
 };
 </script>
