@@ -13,6 +13,7 @@
                 :input-value="active"
                 icon
                 @click="toggle"
+                large
               >
                 <v-icon size="28">fa-user-circle</v-icon>
               </v-btn>
@@ -25,8 +26,9 @@
                 :input-value="active"
                 icon
                 @click="toggle"
+                large
               >
-                <v-icon size="28">fa-university</v-icon>
+                <v-icon size="27">fa-graduation-cap</v-icon>
               </v-btn>
             </div>
           </v-item>
@@ -37,8 +39,9 @@
                 :input-value="active"
                 icon
                 @click="toggle"
+                large
               >
-                <v-icon size="28">fa-plane-departure</v-icon>
+                <v-icon size="24">fa-plane-departure</v-icon>
               </v-btn>
             </div>
           </v-item>
@@ -49,6 +52,7 @@
                 :input-value="active"
                 icon
                 @click="toggle"
+                large
               >
                 <v-icon size="28">fa-dollar-sign</v-icon>
               </v-btn>
