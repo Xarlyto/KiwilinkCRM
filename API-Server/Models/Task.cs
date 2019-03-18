@@ -7,9 +7,10 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace API_Server.Models
 {
-    public class Task
+    public class Task : Base
     {
-        public ObjectId AssignedEmployeeId { get; set; }
         public string Content { get; set; }
+        public bool IsComplete { get; set; }
+        public ObjectId AssignedEmployeeId { get; set; }
     }
 }

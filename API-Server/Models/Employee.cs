@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace API_Server.Models
 {
-    public class Employee
+    public class Employee : Base
     {
-        public ObjectId Id { get; set; }
         public string Name { get; set; }
         public string PasswordHash { get; set; }
 

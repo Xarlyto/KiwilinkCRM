@@ -45,11 +45,9 @@ namespace API_Server.Controllers
             client.VisaApprovedDate = DateTime.UtcNow;
             client.VisaStatus = "Pending";
 
-            client.Tasks.Add(new Models.Task() { Content = "test task content" });
+            client.Save();
 
-            var cid = Database.SaveClient(client);
-
-            return Database.FindClient(cid);
+            return client;
 
         }
     }

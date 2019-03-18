@@ -1,48 +1,51 @@
-﻿using API_Server.Models;
-using MongoDB.Driver;
-using MongoDB.Bson;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
+using MongoDB.Driver;
+using Pluralize.NET;
+using API_Server.Models;
+using MongoDB.Bson;
 
 namespace API_Server.Data
 {
     public static class Database
     {
-        private static IMongoCollection<Client> Clients { get; set; }
-        private static IMongoCollection<Models.Task> Tasks { get; set; }
-        private static IMongoCollection<Employee> Employees { get; set; }
+        private static IMongoDatabase _db;
+        private static Pluralizer _plural;
 
         static Database()
         {
-            var mongo = new MongoClient("mongodb://localhost:27017").GetDatabase("kiwilink");
-
-            Clients = mongo.GetCollection<Client>("Clients");
-            Tasks = mongo.GetCollection<Models.Task>("Tasks");
-            Employees = mongo.GetCollection<Employee>("Employees");
-
-            System.Diagnostics.Debug.WriteLine("MongoDB Initialized...");
+            _db = new MongoClient("mongodb://localhost:27017").GetDatabase("kiwilink");
+            _plural = new Pluralizer();
         }
 
-        public static ObjectId SaveClient(Client client)
+        private static string CollectionName<T>()
         {
-            if (client.Id == ObjectId.Empty) client.Id = ObjectId.GenerateNewId();
-
-            Clients.ReplaceOne<Client>(
-                c => c.Id.Equals(client.Id),
-                client,
-                new UpdateOptions { IsUpsert = true});
-
-            return client.Id;
+            return _plural.Pluralize(typeof(T).Name);
         }
 
-        public static Client FindClient(ObjectId Id)
+        private static IMongoCollection<T> Collection<T>()
         {
-            return (from c in Clients.AsQueryable()
-                    where c.Id.Equals(Id)
-                    select c).SingleOrDefault();
+            return _db.GetCollection<T>(CollectionName<T>());
         }
 
+        public static IQueryable<T> Queryable<T>()
+        {
+            return Collection<T>().AsQueryable<T>();
+        }
+
+        public static void Save<T>(T record) where T : Base
+        {
+            if (record.Id.Equals(ObjectId.Empty)) record.Id = ObjectId.GenerateNewId();
+
+            Collection<T>().ReplaceOne<T>(
+                x => x.Id.Equals(record.Id),
+                record,
+                new UpdateOptions() { IsUpsert = true });
+        }
+
+        public static void Delete<T>(ObjectId id) where T: Base {
+            Collection<T>().DeleteOne<T>(x => x.Id.Equals(id));
+        }
     }
+
 }

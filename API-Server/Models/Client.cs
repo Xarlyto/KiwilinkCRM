@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+using API_Server.Data;
 
 namespace API_Server.Models
 {
-    public class Client
+    public class Client : Base
     {
-        public ObjectId Id { get; set; } 
         public string Address { get; set; }
         public DateTime ArrivalDate { get; set; }
         public string Background { get; set; }
@@ -39,6 +37,11 @@ namespace API_Server.Models
         public DateTime VisaApprovedDate { get; set; }
         public string VisaStatus { get; set; }
 
-        public List<Task> Tasks { get; set; } = new List<Task>();
+        public List<ObjectId> Tasks { get; set; } = new List<ObjectId>();
+
+        public void Save()
+        {
+            Database.Save<Client>(this);
+        }
     }
 }
