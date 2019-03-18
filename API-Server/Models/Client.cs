@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using MongoDB.Bson;
 using API_Server.Data;
 
@@ -41,7 +40,7 @@ namespace API_Server.Models
 
         public void Save()
         {
-            Database.Save<Client>(this);
+            DB.Save<Client>(this);            
         }
     }
 }

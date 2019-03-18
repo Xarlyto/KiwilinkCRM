@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using API_Server.Data;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,9 @@ namespace API_Server.Models
         public string Name { get; set; }
         public string PasswordHash { get; set; }
 
+        public void Save()
+        {
+            DB.Save<Employee>(this);
+        }
     }
 }
