@@ -11,9 +11,11 @@ namespace API_Server.Models
     public class Task : Base
     {
         public ObjectId ClientId { get; set; }
+        public string ClientName { get; set; }
         public string Content { get; set; }
         public bool IsComplete { get; set; } = false;
         public ObjectId AssignedEmployeeId { get; set; }
+        public string AssignedEmployeeName { get; set; }
 
         public void Save()
         {

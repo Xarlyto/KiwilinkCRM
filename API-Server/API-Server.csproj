@@ -14,8 +14,4 @@
     <PackageReference Include="Pluralize.NET" Version="0.1.84" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
 </Project>

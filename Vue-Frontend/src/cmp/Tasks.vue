@@ -3,17 +3,17 @@
     <h1>Tasks</h1>
     <v-card
       v-for="t in Tasks"
-      :key="t.ID"
+      :key="t.Id"
       class="mb-2"
     >
       <v-card-title class="pa-2 blue darken-3 white--text">
-        {{t.Client}}
+        Client Name {{t.ClientName}}
       </v-card-title>
       <v-card-text class="pb-0">
         {{t.Content}}
       </v-card-text>
       <v-card-actions class="pt-0">
-        <span class="grey--text caption ml-2">Assigned To: <b>{{t.AssignedTo}}</b></span>
+        <span class="grey--text caption ml-2">Assigned To: <b>{{t.AssignedEmployeeName}}</b></span>
         <v-spacer></v-spacer>
         <v-btn
           fab
@@ -43,7 +43,7 @@
     >
       <v-card>
         <v-card-title class="pa-2 blue darken-3 white--text">
-          Task For: {{Task.Client}}
+          Task For: {{Task.ClientName}}
         </v-card-title>
         <v-card-text class="pb-0">
           <v-textarea
@@ -54,7 +54,7 @@
           ></v-textarea>
           <v-select
             class="ma-0 pa-0 mt-3 mr-3"
-            v-model="Task.AssignedTo"
+            v-model="Task.AssignedEmployeeName"
             :items="Lists.Employees"
             label="Assign To"
           ></v-select>

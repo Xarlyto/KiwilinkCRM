@@ -11,7 +11,13 @@
             xs12
             md8
           >
-            <client v-if="Client" />
+            <v-progress-linear
+              v-if="Loading"
+              color="green"
+              height="3"
+              indeterminate
+            ></v-progress-linear>
+            <client />
             <teasers />
           </v-flex>
           <v-flex
@@ -37,9 +43,9 @@ import Client from "./cmp/Client";
 export default {
   name: "App",
   components: { ToolBar, Teasers, Finder, Tasks, Client },
-  store: ["Client"],
+  store: ["Loading"],
   created() {
-    this.$store.LoadInitialData();
+    this.$store.InitData();
   }
 };
 </script>

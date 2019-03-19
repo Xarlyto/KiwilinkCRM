@@ -1,17 +1,23 @@
 import axios from 'axios';
 
 export default {
-  Client: null,
+  Client: {},
   Teasers: [],
   Tasks: [],
-  Task: null,
+  Task: {},
   SearchByValue: "Name",
   SearchTerm: "",
   Lists: {},
-  API: process.env.API_URL,
+  API: process.env.VUE_APP_API_URL,
+  Loading: true,
 
   InitData() {
-
+    axios.get(this.API + "home")
+      .then(res => {
+        this.Teasers = res.data.Teasers;
+        this.Tasks = res.data.Tasks;
+        this.Loading = false;
+      });
   },
 
   LoadInitialData() {
@@ -34,7 +40,7 @@ export default {
       }
     ]
 
-    this.Client = null
+    this.Client = {}
 
     this.Task = {
       ID: 3,

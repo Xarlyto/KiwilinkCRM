@@ -1,6 +1,8 @@
 <template>
-  <v-card class="ma-1">
-
+  <v-card
+    v-if="Object.keys(Client).length > 0"
+    class="ma-1"
+  >
     <v-container>
       <v-layout class="pl-2">
         <v-item-group
