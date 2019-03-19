@@ -11,7 +11,7 @@
             xs12
             md8
           >
-            <client />
+            <client v-if="Client" />
             <teasers />
           </v-flex>
           <v-flex
@@ -37,6 +37,7 @@ import Client from "./cmp/Client";
 export default {
   name: "App",
   components: { ToolBar, Teasers, Finder, Tasks, Client },
+  store: ["Client"],
   created() {
     this.$store.LoadInitialData();
   }

@@ -24,6 +24,7 @@ namespace API_Server
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -31,6 +32,7 @@ namespace API_Server
         {
             if (env.IsDevelopment())
             {
+                app.UseCors(builder => builder.AllowAnyOrigin());
                 app.UseDeveloperExceptionPage();
             }
             else
