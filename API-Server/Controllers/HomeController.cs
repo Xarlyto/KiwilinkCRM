@@ -21,5 +21,13 @@ namespace API_Server.Controllers
             vm.Load();
             return vm;
         }    
+
+        [HttpGet("api/client/load/{id}")]
+        public ActionResult<Client> LoadClient(string id)
+        {
+            var client = new Client();
+            return client.Load(id);
+        }
     }
+
 }

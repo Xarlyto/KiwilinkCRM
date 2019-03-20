@@ -20,6 +20,16 @@ export default {
       });
   },
 
+  OpenClient(cl) {
+    cl.Loading = true;
+    axios.get(`${this.API}client/load/${cl.Id}`)
+      .then(res => {
+        this.Client = res.data;
+        this.Tasks = res.data.TaskList;
+        cl.Loading = false;
+      })
+  },
+
   LoadInitialData() {
     this.Teasers = [
       {

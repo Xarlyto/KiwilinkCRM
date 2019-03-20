@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using MongoDB.Bson;
 using API_Server.Data;
+using System.Linq;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace API_Server.Models
 {
@@ -35,12 +37,28 @@ namespace API_Server.Models
         public DateTime VisaAppliedDate { get; set; }
         public DateTime VisaApprovedDate { get; set; }
         public string VisaStatus { get; set; }
+        public ObjectId[] Tasks { get; set; }
 
-        public List<ObjectId> Tasks { get; set; } = new List<ObjectId>();
+        [BsonIgnore]
+        public Task[] TaskList { get; set; }
 
         public void Save()
         {
-            DB.Save<Client>(this);            
+            DB.Save<Client>(this);
+        }
+
+        public Client Load(string id)
+        {
+            var cl = (from c in DB.Collection<Client>()
+                      where c.Id.Equals(new ObjectId(id))
+                      select c).Single();
+
+            cl.TaskList = (from t in DB.Collection<Task>()
+                           where t.ClientId.Equals(new ObjectId(id))
+                           orderby t.LastEditedOn descending
+                           select t).ToArray();
+
+            return cl;
         }
     }
 }

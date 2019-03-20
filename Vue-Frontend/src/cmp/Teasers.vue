@@ -27,6 +27,8 @@
           small
           flat
           color="orange lighten-2"
+          @click="openClient(t)"
+          :loading="t.Loading == true"
         >
           <v-icon size="20">fa-folder-open</v-icon>
           open
@@ -46,7 +48,12 @@
 
 <script>
 export default {
-  store: ["Teasers"]
+  store: ["Teasers"],
+  methods: {
+    openClient(client) {
+      this.$store.OpenClient(client);
+    }
+  }
 };
 </script>
 
