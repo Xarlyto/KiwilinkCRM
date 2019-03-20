@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="Object.keys(Client).length == 0">
     <v-card
       v-for="t in Teasers"
       :key="t.Id"
@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  store: ["Teasers"],
+  store: ["Teasers", "Client"],
   methods: {
     openClient(client) {
       this.$store.OpenClient(client);

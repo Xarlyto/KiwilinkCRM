@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using API_Server.Data;
 using System.Linq;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace API_Server.Models
 {
@@ -37,10 +38,11 @@ namespace API_Server.Models
         public DateTime VisaAppliedDate { get; set; }
         public DateTime VisaApprovedDate { get; set; }
         public string VisaStatus { get; set; }
-        public ObjectId[] Tasks { get; set; }
+        [JsonIgnore] public ObjectId[] Tasks { get; set; }
 
-        [BsonIgnore]
-        public Task[] TaskList { get; set; }
+        [BsonIgnore] public bool Saving { get; set; }
+        [BsonIgnore] public bool ReadOnly { get; set; } = true;
+        [BsonIgnore] public Task[] TaskList { get; set; }
 
         public void Save()
         {

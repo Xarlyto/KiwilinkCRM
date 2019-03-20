@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 
 export default {
   Client: {},
@@ -20,14 +21,24 @@ export default {
       });
   },
 
+  SaveClient() {
+
+  },
+
   OpenClient(cl) {
     cl.Loading = true;
     axios.get(`${this.API}client/load/${cl.Id}`)
       .then(res => {
         this.Client = res.data;
+        this.Client.ArrivalDate = this.FormatDate(this.Client.ArrivalDate);
         this.Tasks = res.data.TaskList;
         cl.Loading = false;
       })
+  },
+
+  FormatDate(date) {
+    if (!date) return '';
+    return moment(date).format("YYYY-MM-DD");
   },
 
   LoadInitialData() {

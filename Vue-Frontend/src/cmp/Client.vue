@@ -86,113 +86,76 @@
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Name"
                       label="First Names"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Surname"
                       label="Surname"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Mobile"
                       label="Mobile"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Landline"
                       label="Land Line"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Email1"
                       label="Email Address 1"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Email2"
                       label="Email Address 2"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
                     <v-combobox
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.LeadSource"
                       :items="Lists.LeadSource"
                       label="Lead Source"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-combobox>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Passport"
                       label="Passport #"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
                     <v-textarea
                       name="Address"
                       label="Postal Address"
                       v-model="Client.Address"
                       class="ma-0 pa-0 mt-3 mr-3"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-textarea>
                     <v-textarea
                       name="Background"
                       label="Background Info"
                       v-model="Client.Background"
                       class="ma-0 pa-0 mt-3 mr-3"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-textarea>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.CV"
                       label="CV Link"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
                   </v-layout>
 
                 </v-card-text>
 
-                <v-card-actions class="text-lg-right pt-2">
-                  <v-btn
-                    small
-                    flat
-                    color="orange lighten-2"
-                    @click="readOnly= !readOnly"
-                    v-if="readOnly"
-                  >
-                    <v-icon
-                      size="20"
-                      class="mr-2"
-                    >fa-edit</v-icon>
-                    edit
-                  </v-btn>
-                  <v-btn
-                    small
-                    flat
-                    color="orange lighten-2"
-                    v-if="!readOnly"
-                  >
-                    <v-icon
-                      size="20"
-                      class="mr-2"
-                    >fa-save</v-icon>
-                    save
-                  </v-btn>
-                  <v-btn
-                    small
-                    flat
-                    color="red lighten-2"
-                  >
-                    <v-icon
-                      class="mr-2"
-                      size="20"
-                    >fa-trash-alt</v-icon>
-                    delete
-                  </v-btn>
-                </v-card-actions>
+                <client-actions />
 
               </v-card>
             </v-window-item>
@@ -219,27 +182,27 @@
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Course"
                       label="Course Name"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
                     <v-combobox
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.CourseCountry"
                       :items="Lists.CourseCountry"
                       label="Course Country"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-combobox>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.MinIELTS"
                       label="Min. IELTS"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
                     <v-combobox
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Institute"
                       :items="Lists.Institutes"
                       label="Institute"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-combobox>
                     <v-menu
                       class="mr-3"
@@ -291,19 +254,19 @@
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.CourseDuration"
                       label="Course Duration"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.CourseFee"
                       label="Course Duration"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.CourseLink"
                       label="Course Website Link"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
                   </v-layout>
 
@@ -322,54 +285,17 @@
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.PathwayProgram1"
                       label="Pathway Program 1"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.PathwayProgram2"
                       label="Pathway Program 2"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
                   </v-layout>
                 </v-card-text>
-                <v-card-actions class="text-lg-right pt-2">
-                  <v-btn
-                    small
-                    flat
-                    color="orange lighten-2"
-                    @click="readOnly= !readOnly"
-                    v-if="readOnly"
-                  >
-                    <v-icon
-                      size="20"
-                      class="mr-2"
-                    >fa-edit</v-icon>
-                    edit
-                  </v-btn>
-                  <v-btn
-                    small
-                    flat
-                    color="orange lighten-2"
-                    v-if="!readOnly"
-                  >
-                    <v-icon
-                      size="20"
-                      class="mr-2"
-                    >fa-save</v-icon>
-                    save
-                  </v-btn>
-                  <v-btn
-                    small
-                    flat
-                    color="red lighten-2"
-                  >
-                    <v-icon
-                      class="mr-2"
-                      size="20"
-                    >fa-trash-alt</v-icon>
-                    delete
-                  </v-btn>
-                </v-card-actions>
+                <client-actions />
               </v-card>
             </v-window-item>
 
@@ -396,7 +322,7 @@
                       v-model="Client.VisaStatus"
                       :items="visaStatusList"
                       label="Visa Status"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-combobox>
                     <v-menu
                       class="mr-3"
@@ -474,44 +400,7 @@
 
                 </v-card-text>
 
-                <v-card-actions class="text-lg-right pt-2">
-                  <v-btn
-                    small
-                    flat
-                    color="orange lighten-2"
-                    @click="readOnly= !readOnly"
-                    v-if="readOnly"
-                  >
-                    <v-icon
-                      size="20"
-                      class="mr-2"
-                    >fa-edit</v-icon>
-                    edit
-                  </v-btn>
-                  <v-btn
-                    small
-                    flat
-                    color="orange lighten-2"
-                    v-if="!readOnly"
-                  >
-                    <v-icon
-                      size="20"
-                      class="mr-2"
-                    >fa-save</v-icon>
-                    save
-                  </v-btn>
-                  <v-btn
-                    small
-                    flat
-                    color="red lighten-2"
-                  >
-                    <v-icon
-                      class="mr-2"
-                      size="20"
-                    >fa-trash-alt</v-icon>
-                    delete
-                  </v-btn>
-                </v-card-actions>
+                <client-actions />
 
               </v-card>
             </v-window-item>
@@ -538,7 +427,7 @@
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.CommissionAmount"
                       label="Ammount"
-                      :readonly="readOnly"
+                      :readonly="Client.ReadOnly"
                     ></v-text-field>
 
                     <v-menu
@@ -569,44 +458,7 @@
 
                 </v-card-text>
 
-                <v-card-actions class="text-lg-right pt-2">
-                  <v-btn
-                    small
-                    flat
-                    color="orange lighten-2"
-                    @click="readOnly= !readOnly"
-                    v-if="readOnly"
-                  >
-                    <v-icon
-                      size="20"
-                      class="mr-2"
-                    >fa-edit</v-icon>
-                    edit
-                  </v-btn>
-                  <v-btn
-                    small
-                    flat
-                    color="orange lighten-2"
-                    v-if="!readOnly"
-                  >
-                    <v-icon
-                      size="20"
-                      class="mr-2"
-                    >fa-save</v-icon>
-                    save
-                  </v-btn>
-                  <v-btn
-                    small
-                    flat
-                    color="red lighten-2"
-                  >
-                    <v-icon
-                      class="mr-2"
-                      size="20"
-                    >fa-trash-alt</v-icon>
-                    delete
-                  </v-btn>
-                </v-card-actions>
+                <client-actions />
 
               </v-card>
             </v-window-item>
@@ -620,10 +472,12 @@
 </template>
 
 <script>
+import ClientActions from "./ClientActions";
+
 export default {
+  components: { ClientActions },
   data: () => ({
     window: 0,
-    readOnly: true,
     showStartDate: false,
     showIntakeDate: false,
     showAppliedDate: false,
