@@ -27,7 +27,11 @@ export default {
       .then(res => {
         this.Client.Saving = false;
       }).catch(err => {
-        console.log(err.message)
+        console.log(err.response.data);
+        if (err.response.data.title == "One or more validation errors occurred.") {
+          alert("Cannot save client info without first and last names!!!")
+        }
+        this.Client.Saving = false;
       })
   },
 

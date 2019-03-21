@@ -5,6 +5,7 @@ using API_Server.Data;
 using System.Linq;
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace API_Server.Models
 {
@@ -30,11 +31,11 @@ namespace API_Server.Models
         public string LeadSource { get; set; }
         public string MinIELTS { get; set; }
         public string Mobile { get; set; }
-        public string Name { get; set; }
+        [Required] public string Name { get; set; }
         public string Passport { get; set; }
         public string PathwayProgram1 { get; set; }
         public string PathwayProgram2 { get; set; }
-        public string Surname { get; set; }
+        [Required] public string Surname { get; set; }
         public DateTime VisaAppliedDate { get; set; }
         public DateTime VisaApprovedDate { get; set; }
         public string VisaStatus { get; set; }
