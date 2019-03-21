@@ -39,12 +39,24 @@
       >fa-trash-alt</v-icon>
       delete
     </v-btn>
+    <v-btn
+      small
+      flat
+      color="brown lighten-2"
+      @click="Client = {}; CurrentWindow = 0;"
+    >
+      <v-icon
+        class="mr-2"
+        size="20"
+      >fa-times-circle</v-icon>
+      close
+    </v-btn>
   </v-card-actions>
 </template>
 
 <script>
 export default {
-  store: ["Client"],
+  store: ["Client", "CurrentWindow"],
   methods: {
     saveClient() {
       this.Client.Saving = true;

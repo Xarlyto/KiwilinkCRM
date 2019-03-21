@@ -6,7 +6,7 @@
     <v-container>
       <v-layout class="pl-2">
         <v-item-group
-          v-model="window"
+          v-model="CurrentWindow"
           class="grey lighten-4 rounded"
         >
           <v-item>
@@ -63,7 +63,7 @@
         </v-item-group>
 
         <v-flex class="pa-3">
-          <v-window v-model="window">
+          <v-window v-model="CurrentWindow">
             <v-window-item>
               <v-card
                 flat
@@ -259,7 +259,7 @@
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.CourseFee"
-                      label="Course Duration"
+                      label="Course Fee"
                       :readonly="Client.ReadOnly"
                     ></v-text-field>
                     <v-text-field
@@ -477,7 +477,6 @@ import ClientActions from "./ClientActions";
 export default {
   components: { ClientActions },
   data: () => ({
-    window: 0,
     showStartDate: false,
     showIntakeDate: false,
     showAppliedDate: false,
@@ -487,7 +486,7 @@ export default {
     visaStatusList: ["Applied", "Pending", "Approved"]
   }),
 
-  store: ["Client", "Lists"]
+  store: ["Client", "Lists", "CurrentWindow"]
 };
 </script>
 

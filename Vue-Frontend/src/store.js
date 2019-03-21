@@ -11,6 +11,7 @@ export default {
   Lists: {},
   API: process.env.VUE_APP_API_URL,
   Loading: true,
+  CurrentWindow: 0,
 
   InitData() {
     axios.get(this.API + "home")

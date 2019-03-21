@@ -32,9 +32,8 @@ namespace API_Server.Controllers
         [HttpPost("api/client/save")]
         public ActionResult<string> SaveClient(Client client)
         {
-            var a = ModelState;
-            var x = client;
-            return "ok";
+            client.Save();
+            return client.Id.ToString();
         }
     }
 

@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace API_Server.Models
 {
+    [BsonIgnoreExtraElements]
     public class Client : Base
     {
         public string Address { get; set; }
@@ -39,7 +40,7 @@ namespace API_Server.Models
         public DateTime VisaAppliedDate { get; set; }
         public DateTime VisaApprovedDate { get; set; }
         public string VisaStatus { get; set; }
-        [JsonIgnore] public ObjectId[] Tasks { get; set; }
+        //[JsonIgnore] public ObjectId[] Tasks { get; set; }
 
         [BsonIgnore] public bool Saving { get; set; }
         [BsonIgnore] public bool ReadOnly { get; set; } = true;
@@ -47,6 +48,10 @@ namespace API_Server.Models
 
         public void Save()
         {
+            //this.Tasks = (from t in DB.Collection<Task>()
+            //              where t.ClientId.Equals(Id)
+            //              select t.Id).ToArray();
+
             DB.Save<Client>(this);
         }
 
