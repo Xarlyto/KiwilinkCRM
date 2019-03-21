@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using MongoDB.Bson;
 using API_Server.Data;
 using System.Linq;
@@ -40,7 +39,6 @@ namespace API_Server.Models
         public DateTime VisaAppliedDate { get; set; }
         public DateTime VisaApprovedDate { get; set; }
         public string VisaStatus { get; set; }
-        //[JsonIgnore] public ObjectId[] Tasks { get; set; }
 
         [BsonIgnore] public bool Saving { get; set; }
         [BsonIgnore] public bool ReadOnly { get; set; } = true;
@@ -48,9 +46,55 @@ namespace API_Server.Models
 
         public void Save()
         {
-            //this.Tasks = (from t in DB.Collection<Task>()
-            //              where t.ClientId.Equals(Id)
-            //              select t.Id).ToArray();
+            var countryList = (from l in DB.Collection<DropList>()
+                               where l.Name.Equals("CourseCountries")
+                               select l).SingleOrDefault();
+
+            if (countryList == null)
+            {
+                countryList = new DropList() { Name = "CourseCountries"};
+            }
+
+            if (!countryList.Values.Contains(CourseCountry))
+            {
+                countryList.Values.Add(CourseCountry);
+            }
+
+            DB.Save<DropList>(countryList);
+
+
+            var leadSourceList = (from l in DB.Collection<DropList>()
+                               where l.Name.Equals("LeadSources")
+                               select l).SingleOrDefault();
+
+            if (leadSourceList == null)
+            {
+                leadSourceList = new DropList() { Name = "LeadSources" };
+            }
+
+            if (!leadSourceList.Values.Contains(LeadSource))
+            {
+                leadSourceList.Values.Add(LeadSource);
+            }
+
+            DB.Save<DropList>(leadSourceList);
+
+
+            var instituteList = (from l in DB.Collection<DropList>()
+                               where l.Name.Equals("Institutes")
+                               select l).SingleOrDefault();
+
+            if (instituteList == null)
+            {
+                instituteList = new DropList() { Name = "Institutes" };
+            }
+
+            if (!instituteList.Values.Contains(Institute))
+            {
+                instituteList.Values.Add(Institute);
+            }
+
+            DB.Save<DropList>(instituteList);
 
             DB.Save<Client>(this);
         }

@@ -121,7 +121,7 @@
                     <v-combobox
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.LeadSource"
-                      :items="Lists.LeadSource"
+                      :items="Lists.LeadSources"
                       label="Lead Source"
                       :readonly="Client.ReadOnly"
                     ></v-combobox>
@@ -187,7 +187,7 @@
                     <v-combobox
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.CourseCountry"
-                      :items="Lists.CourseCountry"
+                      :items="Lists.CourseCountries"
                       label="Course Country"
                       :readonly="Client.ReadOnly"
                     ></v-combobox>
@@ -483,7 +483,7 @@ export default {
     showApprovedDate: false,
     showArrivalDate: false,
     showCommissionDate: false,
-    visaStatusList: ["Applied", "Pending", "Approved"]
+    visaStatusList: ["Not Applied", "Applied", "Pending", "Approved"]
   }),
 
   store: ["Client", "Lists", "CurrentWindow"]

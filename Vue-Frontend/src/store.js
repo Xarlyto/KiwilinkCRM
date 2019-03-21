@@ -18,22 +18,42 @@ export default {
       .then(res => {
         this.Teasers = res.data.Teasers;
         this.Tasks = res.data.Tasks;
+        this.Lists = res.data.Lists;
         this.Loading = false;
       });
   },
 
   SaveClient() {
-    delete this.Client.TaskList;
-    axios.post(this.API + "client/save", this.Client)
-      .then(res => {
-        this.Client.Saving = false;
-      }).catch(err => {
-        console.log(err.response.data);
-        if (err.response.data.title == "One or more validation errors occurred.") {
-          alert("Cannot save client info without first and last names!!!")
-        }
-        this.Client.Saving = false;
-      })
+    //combobox issue needs delayed submit
+    setTimeout(() => {
+      delete this.Client.TaskList;
+      axios.post(this.API + "client/save", this.Client)
+        .then(res => {
+          this.Client.Saving = false;
+
+          var teaser = this.Teasers.find(t => t.Id == this.Client.Id);
+          teaser.Name = this.Client.Name + " " + this.Client.Surname;
+          teaser.Mobile = this.Client.Mobile;
+          teaser.Course = this.Client.Course;
+          teaser.Institute = this.Client.Institute;
+
+          this.Teasers.splice(this.Teasers.indexOf(teaser), 1);
+          this.Teasers.unshift(teaser);
+
+        }).catch(err => {
+          if (err.response) {
+            console.log(err.response.data);
+            if (err.response.data.title == "One or more validation errors occurred.") {
+              alert("Cannot save client info without first and last names!!!")
+            }
+            this.Client.Saving = false;
+          }
+          else {
+            console.log(err);
+          }
+        })
+    }, 300);
+
   },
 
   OpenClient(cl) {
@@ -58,20 +78,4 @@ export default {
     if (!date) return '';
     return moment(date).format("YYYY-MM-DD");
   },
-
-  // LoadInitialData() {
-
-  //   this.Task = {
-  //     ID: 3,
-  //     Client: "Steve Harvey",
-  //     AssignedTo: "Nalin",
-  //     Content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius, ut. Porro, modi minus vero odit neque, voluptatum quo fuga sint inventore asperiores quis blanditiis architecto mollitia atque rerum? Illum, pariatur.",
-  //   }
-
-  //   this.Lists = {
-  //     LeadSource: ["Google", "Facebook", "Newspaper"],
-  //     CourseCountry: ["America", "Australia"],
-  //     Employees: ["Nalin", "Damith", "Sunimalee"]
-  //   }
-  // }
 };

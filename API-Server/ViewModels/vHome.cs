@@ -11,6 +11,7 @@ namespace API_Server.ViewModels
     {
         public vTeaser[] Teasers { get; set; }
         public Models.Task[] Tasks { get; set; }
+        public vLists Lists { get; set; } = new vLists();
 
         public void Load()
         {
@@ -29,6 +30,9 @@ namespace API_Server.ViewModels
                      where t.IsComplete == false
                      orderby t.LastEditedOn descending
                      select t).Take(25).ToArray();
+
+            Lists.Load();
         }
     }
 }
+
