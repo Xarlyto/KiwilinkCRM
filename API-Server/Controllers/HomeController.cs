@@ -28,6 +28,14 @@ namespace API_Server.Controllers
             var client = new Client();
             return client.Load(id);
         }
+
+        [HttpPost("api/client/save")]
+        public ActionResult<string> SaveClient(Client client)
+        {
+            var a = ModelState;
+            var x = client;
+            return "ok";
+        }
     }
 
 }

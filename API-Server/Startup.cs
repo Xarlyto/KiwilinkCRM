@@ -27,15 +27,16 @@ namespace API_Server
         {
             services.AddCors();
             services.AddMvc()
-                .AddJsonOptions(opt=>opt.SerializerSettings.ContractResolver = new DefaultContractResolver())
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                .AddJsonOptions(opt => opt.SerializerSettings.ContractResolver = new DefaultContractResolver())
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .ConfigureApiBehaviorOptions(opt => opt.SuppressModelStateInvalidFilter = false);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
-                app.UseCors(builder => builder.AllowAnyOrigin());
+                app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
                 app.UseDeveloperExceptionPage();
             }
             else

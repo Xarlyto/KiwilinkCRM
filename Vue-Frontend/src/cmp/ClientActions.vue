@@ -48,6 +48,7 @@ export default {
   methods: {
     saveClient() {
       this.Client.Saving = true;
+      this.$store.SaveClient();
     }
   }
 };

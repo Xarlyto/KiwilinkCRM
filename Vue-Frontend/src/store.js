@@ -22,7 +22,13 @@ export default {
   },
 
   SaveClient() {
-
+    delete this.Client.TaskList;
+    axios.post(this.API + "client/save", this.Client)
+      .then(res => {
+        this.Client.Saving = false;
+      }).catch(err => {
+        console.log(err.message)
+      })
   },
 
   OpenClient(cl) {
@@ -30,7 +36,14 @@ export default {
     axios.get(`${this.API}client/load/${cl.Id}`)
       .then(res => {
         this.Client = res.data;
+
         this.Client.ArrivalDate = this.FormatDate(this.Client.ArrivalDate);
+        this.Client.CommissionDate = this.FormatDate(this.Client.CommissionDate);
+        this.Client.CourseIntakeDate = this.FormatDate(this.Client.CourseIntakeDate);
+        this.Client.CourseStartDate = this.FormatDate(this.Client.CourseStartDate);
+        this.Client.VisaAppliedDate = this.FormatDate(this.Client.VisaAppliedDate);
+        this.Client.VisaApprovedDate = this.FormatDate(this.Client.VisaApprovedDate);
+
         this.Tasks = res.data.TaskList;
         cl.Loading = false;
       })
@@ -41,39 +54,19 @@ export default {
     return moment(date).format("YYYY-MM-DD");
   },
 
-  LoadInitialData() {
-    this.Teasers = [
-      {
-        ID: 1,
-        Name: "Damith Ranjan Gunathilake",
-        Mobile: "0713429292",
-        Course: "Diploma in political sciense",
-        Institute: "PBS Institute"
-      }
-    ];
+  // LoadInitialData() {
 
-    this.Tasks = [
-      {
-        ID: 1,
-        Client: "Damith Gunathilake",
-        AssignedTo: "Danny",
-        Content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius, ut. Porro, modi minus vero odit neque, voluptatum quo fuga sint inventore asperiores quis blanditiis architecto mollitia atque rerum? Illum, pariatur.",
-      }
-    ]
+  //   this.Task = {
+  //     ID: 3,
+  //     Client: "Steve Harvey",
+  //     AssignedTo: "Nalin",
+  //     Content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius, ut. Porro, modi minus vero odit neque, voluptatum quo fuga sint inventore asperiores quis blanditiis architecto mollitia atque rerum? Illum, pariatur.",
+  //   }
 
-    this.Client = {}
-
-    this.Task = {
-      ID: 3,
-      Client: "Steve Harvey",
-      AssignedTo: "Nalin",
-      Content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius, ut. Porro, modi minus vero odit neque, voluptatum quo fuga sint inventore asperiores quis blanditiis architecto mollitia atque rerum? Illum, pariatur.",
-    }
-
-    this.Lists = {
-      LeadSource: ["Google", "Facebook", "Newspaper"],
-      CourseCountry: ["America", "Australia"],
-      Employees: ["Nalin", "Damith", "Sunimalee"]
-    }
-  }
+  //   this.Lists = {
+  //     LeadSource: ["Google", "Facebook", "Newspaper"],
+  //     CourseCountry: ["America", "Australia"],
+  //     Employees: ["Nalin", "Damith", "Sunimalee"]
+  //   }
+  // }
 };
