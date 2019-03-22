@@ -31,7 +31,7 @@
       small
       flat
       color="red lighten-2"
-      v-if="!Client.ReadOnly"
+      v-if="enableDelete"
     >
       <v-icon
         class="mr-2"
@@ -80,9 +80,15 @@ export default {
     },
     addTask() {
       this.$store.OpenTask({
+        Id: "",
         ClientId: this.Client.Id,
         ClientName: this.Client.Name + " " + this.Client.Surname
       });
+    }
+  },
+  computed: {
+    enableDelete() {
+      return !this.Client.ReadOnly && this.Client.DeleteEnable;
     }
   }
 };

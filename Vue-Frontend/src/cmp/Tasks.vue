@@ -15,7 +15,11 @@
       class="mb-2"
     >
       <v-card-title class="pa-2 blue darken-3 white--text">
-        Client Name {{t.ClientName}}
+        <a
+          href="#"
+          class="white--text no-underline"
+          @click.prevent="openClient(t.ClientId)"
+        >{{t.ClientName}}</a>
       </v-card-title>
       <v-card-text class="pb-0">
         {{t.Content}}
@@ -48,7 +52,6 @@
     <v-dialog
       v-model="ShowTaskEditor"
       max-width="400px"
-      persistent
     >
       <v-card>
         <v-card-title class="pa-2 blue darken-3 white--text">
@@ -96,6 +99,9 @@ export default {
     saveTask() {
       this.Task.Saving = true;
       this.$store.SaveTask();
+    },
+    openClient(cid) {
+      this.$store.OpenClient({ Id: cid });
     }
   }
 };

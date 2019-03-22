@@ -9,7 +9,7 @@
         >
           <v-flex
             xs12
-            md8
+            md7
           >
             <v-progress-linear
               v-if="Loading"
@@ -22,7 +22,7 @@
           </v-flex>
           <v-flex
             xs12
-            md4
+            md5
           >
             <finder />
             <tasks />
@@ -53,6 +53,9 @@ export default {
 <style>
 .rounded {
   border-radius: 7px;
+}
+.no-underline {
+  text-decoration: none;
 }
 </style>
 

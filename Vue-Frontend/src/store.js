@@ -29,9 +29,10 @@ export default {
   SaveClient() {
     //combobox issue needs delayed submit
     setTimeout(() => {
-      delete this.Client.TaskList;
+      var client = JSON.parse(JSON.stringify(this.Client))
+      delete client.TaskList;
 
-      axios.post(this.API + "client/save", this.Client)
+      axios.post(this.API + "client/save", client)
         .then(res => {
 
           this.Client.Id = res.data;
@@ -51,6 +52,8 @@ export default {
           this.Teasers.unshift(teaser);
 
           this.Client.Saving = false;
+          this.Client.ReadOnly = true;
+          this.Client.DeleteEnable = true;
 
         }).catch(err => {
           if (err.response) {
@@ -75,7 +78,13 @@ export default {
     } else {
       axios.post(this.API + "task/save", this.Task)
         .then(res => {
-          //todo: add new task to backup list and current list.
+          var isNew = (this.Task.Id == "");
+          this.Task.Id = res.data;
+          if (isNew) {
+            this.Tasks.unshift(this.Task);
+            this.TasksBackup.unshift(this.Task);
+          }
+
           this.ShowTaskEditor = false;
           this.Task.Saving = false;
           this.Task = {};
@@ -87,8 +96,12 @@ export default {
   },
 
   NewClient() {
-    this.Client = {};
-    this.Client.Id = '';
+    this.Client = {
+      Id: '',
+      ReadOnly: false,
+      DeleteEnable: false,
+      TaskList: [],
+    };
     this.Tasks = [];
     this.ShowTaskAddBtn = false;
   },
@@ -110,6 +123,7 @@ export default {
         this.Tasks = res.data.TaskList;
         cl.Loading = false;
         this.ShowTaskAddBtn = true;
+        this.Client.DeleteEnable = true;
       })
   },
 

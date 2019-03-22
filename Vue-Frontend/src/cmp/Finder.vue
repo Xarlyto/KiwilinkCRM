@@ -26,7 +26,7 @@
 <script>
 export default {
   data: () => ({
-    SearchByList: ["ID", "Name", "Phone", "Country"]
+    SearchByList: ["Name", "Passport #", "Phone", "Country"]
   }),
   store: ["SearchByValue", "SearchTerm"],
   methods: {}

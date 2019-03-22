@@ -42,6 +42,7 @@ namespace API_Server.Models
 
         [BsonIgnore] public bool Saving { get; set; }
         [BsonIgnore] public bool ReadOnly { get; set; } = true;
+        [BsonIgnore] public bool DeleteEnable { get; set; } = false;
         [BsonIgnore] public Task[] TaskList { get; set; }
 
         public void Save()
