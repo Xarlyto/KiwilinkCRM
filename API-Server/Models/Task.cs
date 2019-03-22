@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using API_Server.Data;
+﻿using API_Server.Data;
+using API_Server.ViewModels;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace API_Server.Models
 {
     public class Task : Base
     {
-        public ObjectId ClientId { get; set; }
+        [JsonConverter(typeof(ObjectIdConverter))] public ObjectId ClientId { get; set; }
         public string ClientName { get; set; }
         public string Content { get; set; }
         public bool IsComplete { get; set; } = false;
-        public ObjectId AssignedEmployeeId { get; set; }
         public string AssignedEmployeeName { get; set; }
+
+        [BsonIgnore] public bool Saving { get; set; }
 
         public void Save()
         {

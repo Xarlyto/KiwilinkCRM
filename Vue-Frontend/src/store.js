@@ -68,6 +68,24 @@ export default {
 
   },
 
+  SaveTask() {
+    if (!this.Task.Content || !this.Task.AssignedEmployeeName) {
+      alert("Please fill up all the fields before saving!")
+      this.Task.Saving = false;
+    } else {
+      axios.post(this.API + "task/save", this.Task)
+        .then(res => {
+          //todo: add new task to backup list and current list.
+          this.ShowTaskEditor = false;
+          this.Task.Saving = false;
+          this.Task = {};
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+  },
+
   NewClient() {
     this.Client = {};
     this.Client.Id = '';

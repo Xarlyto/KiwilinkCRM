@@ -36,6 +36,13 @@ namespace API_Server.Controllers
             return client.Id.ToString();
         }
 
+        [HttpPost("api/task/save")]
+        public ActionResult<string> SaveTask(Task task)
+        {
+            task.Save();
+            return task.Id.ToString();
+        }
+
         [HttpGet("api/add-employee/{name}/{pass}")]
         public ActionResult<Employee> AddEmployee(string name, string pass)
         {

@@ -52,7 +52,7 @@
     >
       <v-card>
         <v-card-title class="pa-2 blue darken-3 white--text">
-          Task For: {{Task.ClientName}}
+          Client:&nbsp;{{Task.ClientName}}
         </v-card-title>
         <v-card-text class="pb-0">
           <v-textarea
@@ -74,6 +74,8 @@
             small
             dark
             flat
+            @click="saveTask"
+            :loading="Task.Saving"
             color="green darken-3"
           >
             <v-icon class="mr-2">fa-save</v-icon> SAVE
@@ -90,6 +92,10 @@ export default {
   methods: {
     editTask(task) {
       this.$store.OpenTask(task);
+    },
+    saveTask() {
+      this.Task.Saving = true;
+      this.$store.SaveTask();
     }
   }
 };

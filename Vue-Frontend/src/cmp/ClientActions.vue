@@ -44,6 +44,7 @@
       flat
       color="blue lighten-2"
       v-if="ShowTaskAddBtn"
+      @click="addTask"
     >
       <v-icon
         class="mr-2"
@@ -68,7 +69,7 @@
 
 <script>
 export default {
-  store: ["Client", "CurrentWindow", "ShowTaskAddBtn"],
+  store: ["Client", "CurrentWindow", "ShowTaskAddBtn", "Task"],
   methods: {
     saveClient() {
       this.Client.Saving = true;
@@ -76,6 +77,12 @@ export default {
     },
     closeClient() {
       this.$store.CloseClient();
+    },
+    addTask() {
+      this.$store.OpenTask({
+        ClientId: this.Client.Id,
+        ClientName: this.Client.Name + " " + this.Client.Surname
+      });
     }
   }
 };

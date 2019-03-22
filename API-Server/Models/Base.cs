@@ -12,8 +12,6 @@ namespace API_Server.Models
 {
     public class Base
     {
-        //[BsonId]
-        //[BsonRepresentation(BsonType.ObjectId)]
         [JsonConverter(typeof(ObjectIdConverter))]
         public ObjectId Id { get; set; }
 

@@ -12,7 +12,8 @@ namespace API_Server.ViewModels
         public string[] LeadSources { get; set; }
         public string[] CourseCountries { get; set; }
         public string[] Institutes { get; set; }
-
+        public string[] Employees { get; set; }
+        
         public void Load()
         {
             try
@@ -51,6 +52,10 @@ namespace API_Server.ViewModels
 
                 Institutes = new string[0];
             }
+
+            Employees = (from e in DB.Collection<Employee>()
+                         orderby e.Name ascending
+                         select e.Name).ToArray();
         }
     }
 
