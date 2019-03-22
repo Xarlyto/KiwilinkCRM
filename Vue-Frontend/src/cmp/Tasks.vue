@@ -29,6 +29,7 @@
           dark
           flat
           color="orange lighten-1"
+          @click="editTask(t)"
         >
           <v-icon>fa-edit</v-icon>
         </v-btn>
@@ -45,7 +46,7 @@
     </v-card>
 
     <v-dialog
-      v-model="showTaskEditor"
+      v-model="ShowTaskEditor"
       max-width="400px"
       persistent
     >
@@ -85,10 +86,12 @@
 
 <script>
 export default {
-  store: ["Tasks", "Task", "Lists"],
-  data: () => ({
-    showTaskEditor: false
-  })
+  store: ["Tasks", "Task", "Lists", "ShowTaskEditor"],
+  methods: {
+    editTask(task) {
+      this.$store.OpenTask(task);
+    }
+  }
 };
 </script>
 

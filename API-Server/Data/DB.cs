@@ -48,7 +48,7 @@ namespace API_Server.Data
 
         public static void Delete<T>(ObjectId id) where T: Base {
             collection<T>().DeleteOne(x => x.Id.Equals(id));
-        }
+        }       
     }
 
 }

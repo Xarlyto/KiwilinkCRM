@@ -35,6 +35,14 @@ namespace API_Server.Controllers
             client.Save();
             return client.Id.ToString();
         }
+
+        [HttpGet("api/add-employee/{name}/{pass}")]
+        public ActionResult<Employee> AddEmployee(string name, string pass)
+        {
+            var emp = new Employee() { Name = name.TitleCaseMe(), Password =pass };
+            emp.Save();
+            return emp;
+        }
     }
 
 }

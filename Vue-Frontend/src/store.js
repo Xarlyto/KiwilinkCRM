@@ -14,6 +14,7 @@ export default {
   Loading: true,
   CurrentWindow: 0,
   ShowTaskAddBtn: true,
+  ShowTaskEditor: false,
 
   InitData() {
     axios.get(this.API + "home")
@@ -104,4 +105,9 @@ export default {
     if (!date) return '';
     return moment(date).format("YYYY-MM-DD");
   },
+
+  OpenTask(tsk) {
+    this.Task = tsk;
+    this.ShowTaskEditor = true;
+  }
 };
