@@ -55,9 +55,9 @@ namespace API_Server.Models
                 countryList = new DropList() { Name = "CourseCountries"};
             }
 
-            if (!countryList.Values.Contains(CourseCountry))
+            if (!countryList.Values.Any(x=>x.Equals(CourseCountry,StringComparison.OrdinalIgnoreCase)))
             {
-                countryList.Values.Add(CourseCountry);
+                countryList.Values.Add(CourseCountry.TitleCaseMe());
             }
 
             DB.Save<DropList>(countryList);
@@ -72,9 +72,9 @@ namespace API_Server.Models
                 leadSourceList = new DropList() { Name = "LeadSources" };
             }
 
-            if (!leadSourceList.Values.Contains(LeadSource))
+            if (!leadSourceList.Values.Any(x => x.Equals(LeadSource, StringComparison.OrdinalIgnoreCase)))
             {
-                leadSourceList.Values.Add(LeadSource);
+                leadSourceList.Values.Add(LeadSource.TitleCaseMe());
             }
 
             DB.Save<DropList>(leadSourceList);
@@ -89,9 +89,9 @@ namespace API_Server.Models
                 instituteList = new DropList() { Name = "Institutes" };
             }
 
-            if (!instituteList.Values.Contains(Institute))
+            if (!instituteList.Values.Any(x => x.Equals(Institute, StringComparison.OrdinalIgnoreCase)))
             {
-                instituteList.Values.Add(Institute);
+                instituteList.Values.Add(Institute.TitleCaseMe());
             }
 
             DB.Save<DropList>(instituteList);

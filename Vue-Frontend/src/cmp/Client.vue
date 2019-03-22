@@ -87,36 +87,42 @@
                       v-model="Client.Name"
                       label="First Names"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Surname"
                       label="Surname"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Mobile"
                       label="Mobile"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Landline"
                       label="Land Line"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Email1"
                       label="Email Address 1"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Email2"
                       label="Email Address 2"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
                     <v-combobox
                       class="ma-0 pa-0 mt-3 mr-3"
@@ -124,12 +130,14 @@
                       :items="Lists.LeadSources"
                       label="Lead Source"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-combobox>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Passport"
                       label="Passport #"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
                     <v-textarea
                       name="Address"
@@ -137,6 +145,7 @@
                       v-model="Client.Address"
                       class="ma-0 pa-0 mt-3 mr-3"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-textarea>
                     <v-textarea
                       name="Background"
@@ -144,12 +153,14 @@
                       v-model="Client.Background"
                       class="ma-0 pa-0 mt-3 mr-3"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-textarea>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.CV"
                       label="CV Link"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
                   </v-layout>
 
@@ -183,6 +194,7 @@
                       v-model="Client.Course"
                       label="Course Name"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
                     <v-combobox
                       class="ma-0 pa-0 mt-3 mr-3"
@@ -190,12 +202,14 @@
                       :items="Lists.CourseCountries"
                       label="Course Country"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-combobox>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.MinIELTS"
                       label="Min. IELTS"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
                     <v-combobox
                       class="ma-0 pa-0 mt-3 mr-3"
@@ -203,6 +217,7 @@
                       :items="Lists.Institutes"
                       label="Institute"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-combobox>
                     <v-menu
                       class="mr-3"
@@ -220,6 +235,7 @@
                           label="Start Date"
                           readonly
                           v-on="on"
+                          :background-color="formColor"
                         ></v-text-field>
                       </template>
                       <v-date-picker
@@ -243,6 +259,7 @@
                           label="Start Date"
                           readonly
                           v-on="on"
+                          :background-color="formColor"
                         ></v-text-field>
                       </template>
                       <v-date-picker
@@ -255,18 +272,21 @@
                       v-model="Client.CourseDuration"
                       label="Course Duration"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.CourseFee"
                       label="Course Fee"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.CourseLink"
                       label="Course Website Link"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
                   </v-layout>
 
@@ -286,12 +306,14 @@
                       v-model="Client.PathwayProgram1"
                       label="Pathway Program 1"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.PathwayProgram2"
                       label="Pathway Program 2"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
                   </v-layout>
                 </v-card-text>
@@ -323,6 +345,7 @@
                       :items="visaStatusList"
                       label="Visa Status"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-combobox>
                     <v-menu
                       class="mr-3"
@@ -340,6 +363,7 @@
                           label="Applied Date"
                           readonly
                           v-on="on"
+                          :background-color="formColor"
                         ></v-text-field>
                       </template>
                       <v-date-picker
@@ -364,6 +388,7 @@
                           label="Approved Date"
                           readonly
                           v-on="on"
+                          :background-color="formColor"
                         ></v-text-field>
                       </template>
                       <v-date-picker
@@ -388,6 +413,7 @@
                           label="Arrival Date"
                           readonly
                           v-on="on"
+                          :background-color="formColor"
                         ></v-text-field>
                       </template>
                       <v-date-picker
@@ -428,6 +454,7 @@
                       v-model="Client.CommissionAmount"
                       label="Ammount"
                       :readonly="Client.ReadOnly"
+                      :background-color="formColor"
                     ></v-text-field>
 
                     <v-menu
@@ -446,6 +473,7 @@
                           label="Received Date"
                           readonly
                           v-on="on"
+                          :background-color="formColor"
                         ></v-text-field>
                       </template>
                       <v-date-picker
@@ -486,7 +514,16 @@ export default {
     visaStatusList: ["Not Applied", "Applied", "Pending", "Approved"]
   }),
 
-  store: ["Client", "Lists", "CurrentWindow"]
+  store: ["Client", "Lists", "CurrentWindow"],
+
+  computed: {
+    formColor() {
+      if (this.Client.ReadOnly) {
+        return "";
+      }
+      return "purple lighten-5";
+    }
+  }
 };
 </script>
 
