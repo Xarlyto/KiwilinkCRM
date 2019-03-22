@@ -12,18 +12,18 @@ namespace API_Server.Models
     public class Client : Base
     {
         public string Address { get; set; }
-        public DateTime ArrivalDate { get; set; }
+        public Nullable<DateTime> ArrivalDate { get; set; }
         public string Background { get; set; }
         public string CV { get; set; }
         public string Course { get; set; }
         public string CourseCountry { get; set; }
         public string CourseDuration { get; set; }
         public string CourseFee { get; set; }
-        public DateTime CourseIntakeDate { get; set; }
+        public Nullable<DateTime> CourseIntakeDate { get; set; }
         public string CourseLink { get; set; }
-        public DateTime CourseStartDate { get; set; }
+        public Nullable<DateTime> CourseStartDate { get; set; }
         public string CommissionAmount { get; set; }
-        public DateTime CommissionDate { get; set; }
+        public Nullable<DateTime> CommissionDate { get; set; }
         public string Email1 { get; set; }
         public string Email2 { get; set; }
         public string Institute { get; set; }
@@ -36,8 +36,8 @@ namespace API_Server.Models
         public string PathwayProgram1 { get; set; }
         public string PathwayProgram2 { get; set; }
         [Required] public string Surname { get; set; }
-        public DateTime VisaAppliedDate { get; set; }
-        public DateTime VisaApprovedDate { get; set; }
+        public Nullable<DateTime> VisaAppliedDate { get; set; }
+        public Nullable<DateTime> VisaApprovedDate { get; set; }
         public string VisaStatus { get; set; }
 
         [BsonIgnore] public bool Saving { get; set; }
@@ -46,55 +46,64 @@ namespace API_Server.Models
 
         public void Save()
         {
-            var countryList = (from l in DB.Collection<DropList>()
-                               where l.Name.Equals("CourseCountries")
-                               select l).SingleOrDefault();
-
-            if (countryList == null)
+            if (CourseCountry != null)
             {
-                countryList = new DropList() { Name = "CourseCountries"};
+                var countryList = (from l in DB.Collection<DropList>()
+                                   where l.Name.Equals("CourseCountries")
+                                   select l).SingleOrDefault();
+
+                if (countryList == null)
+                {
+                    countryList = new DropList() { Name = "CourseCountries" };
+                }
+
+                if (!countryList.Values.Any(x => x.Equals(CourseCountry, StringComparison.OrdinalIgnoreCase)))
+                {
+                    countryList.Values.Add(CourseCountry.TitleCaseMe());
+                }
+
+                DB.Save<DropList>(countryList);
             }
 
-            if (!countryList.Values.Any(x=>x.Equals(CourseCountry,StringComparison.OrdinalIgnoreCase)))
+
+            if (LeadSource != null)
             {
-                countryList.Values.Add(CourseCountry.TitleCaseMe());
+                var leadSourceList = (from l in DB.Collection<DropList>()
+                                      where l.Name.Equals("LeadSources")
+                                      select l).SingleOrDefault();
+
+                if (leadSourceList == null)
+                {
+                    leadSourceList = new DropList() { Name = "LeadSources" };
+                }
+
+                if (!leadSourceList.Values.Any(x => x.Equals(LeadSource, StringComparison.OrdinalIgnoreCase)))
+                {
+                    leadSourceList.Values.Add(LeadSource.TitleCaseMe());
+                }
+
+                DB.Save<DropList>(leadSourceList);
             }
 
-            DB.Save<DropList>(countryList);
 
-
-            var leadSourceList = (from l in DB.Collection<DropList>()
-                               where l.Name.Equals("LeadSources")
-                               select l).SingleOrDefault();
-
-            if (leadSourceList == null)
+            if (Institute != null)
             {
-                leadSourceList = new DropList() { Name = "LeadSources" };
+                var instituteList = (from l in DB.Collection<DropList>()
+                                     where l.Name.Equals("Institutes")
+                                     select l).SingleOrDefault();
+
+                if (instituteList == null)
+                {
+                    instituteList = new DropList() { Name = "Institutes" };
+                }
+
+                if (!instituteList.Values.Any(x => x.Equals(Institute, StringComparison.OrdinalIgnoreCase)))
+                {
+                    instituteList.Values.Add(Institute.TitleCaseMe());
+                }
+
+                DB.Save<DropList>(instituteList);
             }
-
-            if (!leadSourceList.Values.Any(x => x.Equals(LeadSource, StringComparison.OrdinalIgnoreCase)))
-            {
-                leadSourceList.Values.Add(LeadSource.TitleCaseMe());
-            }
-
-            DB.Save<DropList>(leadSourceList);
-
-
-            var instituteList = (from l in DB.Collection<DropList>()
-                               where l.Name.Equals("Institutes")
-                               select l).SingleOrDefault();
-
-            if (instituteList == null)
-            {
-                instituteList = new DropList() { Name = "Institutes" };
-            }
-
-            if (!instituteList.Values.Any(x => x.Equals(Institute, StringComparison.OrdinalIgnoreCase)))
-            {
-                instituteList.Values.Add(Institute.TitleCaseMe());
-            }
-
-            DB.Save<DropList>(instituteList);
 
             DB.Save<Client>(this);
         }

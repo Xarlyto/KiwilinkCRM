@@ -23,7 +23,7 @@ namespace API_Server.ViewModels
             }
             catch (Exception)
             {
-                //ignore
+                LeadSources = new string[0];
             }
 
             try
@@ -37,7 +37,7 @@ namespace API_Server.ViewModels
             catch (Exception)
             {
 
-                //ignore
+               CourseCountries = new string[0];
             }
 
             try
@@ -49,7 +49,7 @@ namespace API_Server.ViewModels
             catch (Exception)
             {
 
-                //ignore
+                Institutes = new string[0];
             }
         }
     }

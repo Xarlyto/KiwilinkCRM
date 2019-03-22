@@ -256,7 +256,7 @@
                       <template v-slot:activator="{ on }">
                         <v-text-field
                           v-model="Client.CourseIntakeDate"
-                          label="Start Date"
+                          label="Intake Date"
                           readonly
                           v-on="on"
                           :background-color="formColor"

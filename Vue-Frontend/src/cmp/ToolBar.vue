@@ -3,7 +3,10 @@
     <v-toolbar-title><span class="display-2 purple darken-4 white--text pa-1">KIWILINK</span><span class="font-weight-black display-1">CRM</span></v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn flat>
+      <v-btn
+        flat
+        @click="newClient"
+      >
         <v-icon
           color="purple darken-4"
           class="mr-2"
@@ -35,5 +38,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    newClient() {
+      this.$store.NewClient();
+    }
+  }
+};
 </script>

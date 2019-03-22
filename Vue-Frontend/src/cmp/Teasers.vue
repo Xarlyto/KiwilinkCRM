@@ -9,15 +9,24 @@
         <v-icon small>fa-user-circle</v-icon>
         <span>{{ t.Name }}</span>
       </div>
-      <div class="row">
+      <div
+        v-if="t.Mobile"
+        class="row"
+      >
         <v-icon small>fa-phone-square</v-icon>
         <span>{{ t.Mobile }}</span>
       </div>
-      <div class="row">
+      <div
+        v-if="t.Course"
+        class="row"
+      >
         <v-icon small>fa-graduation-cap</v-icon>
         <span>{{ t.Course }}</span>
       </div>
-      <div class="row">
+      <div
+        v-if="t.Institute"
+        class="row"
+      >
         <v-icon small>fa-university</v-icon>
         <span>{{ t.Institute }}</span>
       </div>

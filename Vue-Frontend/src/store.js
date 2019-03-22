@@ -5,6 +5,7 @@ export default {
   Client: {},
   Teasers: [],
   Tasks: [],
+  TasksBackup: [],
   Task: {},
   SearchByValue: "Name",
   SearchTerm: "",
@@ -12,6 +13,7 @@ export default {
   API: process.env.VUE_APP_API_URL,
   Loading: true,
   CurrentWindow: 0,
+  ShowTaskAddBtn: true,
 
   InitData() {
     axios.get(this.API + "home")
@@ -27,11 +29,18 @@ export default {
     //combobox issue needs delayed submit
     setTimeout(() => {
       delete this.Client.TaskList;
+
       axios.post(this.API + "client/save", this.Client)
         .then(res => {
-          this.Client.Saving = false;
 
+          this.Client.Id = res.data;
+          this.ShowTaskAddBtn = true;
           var teaser = this.Teasers.find(t => t.Id == this.Client.Id);
+
+          if (!teaser) {
+            teaser = { Id: this.Client.Id };
+          }
+
           teaser.Name = this.Client.Name + " " + this.Client.Surname;
           teaser.Mobile = this.Client.Mobile;
           teaser.Course = this.Client.Course;
@@ -39,6 +48,8 @@ export default {
 
           this.Teasers.splice(this.Teasers.indexOf(teaser), 1);
           this.Teasers.unshift(teaser);
+
+          this.Client.Saving = false;
 
         }).catch(err => {
           if (err.response) {
@@ -56,6 +67,13 @@ export default {
 
   },
 
+  NewClient() {
+    this.Client = {};
+    this.Client.Id = '';
+    this.Tasks = [];
+    this.ShowTaskAddBtn = false;
+  },
+
   OpenClient(cl) {
     cl.Loading = true;
     axios.get(`${this.API}client/load/${cl.Id}`)
@@ -69,9 +87,17 @@ export default {
         this.Client.VisaAppliedDate = this.FormatDate(this.Client.VisaAppliedDate);
         this.Client.VisaApprovedDate = this.FormatDate(this.Client.VisaApprovedDate);
 
+        this.TasksBackup = this.Tasks;
         this.Tasks = res.data.TaskList;
         cl.Loading = false;
+        this.ShowTaskAddBtn = true;
       })
+  },
+
+  CloseClient() {
+    this.Client = {};
+    this.CurrentWindow = 0;
+    this.Tasks = this.TasksBackup;
   },
 
   FormatDate(date) {

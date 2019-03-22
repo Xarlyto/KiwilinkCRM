@@ -42,8 +42,20 @@
     <v-btn
       small
       flat
+      color="blue lighten-2"
+      v-if="ShowTaskAddBtn"
+    >
+      <v-icon
+        class="mr-2"
+        size="20"
+      >fa-calendar-plus</v-icon>
+      new task
+    </v-btn>
+    <v-btn
+      small
+      flat
       color="brown lighten-2"
-      @click="Client = {}; CurrentWindow = 0;"
+      @click="closeClient"
     >
       <v-icon
         class="mr-2"
@@ -56,11 +68,14 @@
 
 <script>
 export default {
-  store: ["Client", "CurrentWindow"],
+  store: ["Client", "CurrentWindow", "ShowTaskAddBtn"],
   methods: {
     saveClient() {
       this.Client.Saving = true;
       this.$store.SaveClient();
+    },
+    closeClient() {
+      this.$store.CloseClient();
     }
   }
 };

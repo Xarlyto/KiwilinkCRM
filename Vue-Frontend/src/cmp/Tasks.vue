@@ -2,6 +2,14 @@
   <v-container class="mt-0 pt-0">
     <h1>Tasks</h1>
     <v-card
+      v-if="Tasks.length==0"
+      flat
+    >
+      <v-card-text>
+        <span class="grey--text darken-1">No tasks to display...</span>
+      </v-card-text>
+    </v-card>
+    <v-card
       v-for="t in Tasks"
       :key="t.Id"
       class="mb-2"
