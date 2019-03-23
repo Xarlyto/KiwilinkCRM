@@ -80,7 +80,15 @@ export default {
         .then(res => {
           var isNew = (this.Task.Id == "");
           this.Task.Id = res.data;
-          if (isNew) {
+
+          if (!isNew) {
+            var mTask = this.Tasks.find(t => t.Id == this.Task.Id);
+            if (mTask) mTask = this.Task;
+
+            var bTask = this.TasksBackup.find(t => t.Id == this.Task.Id);
+            this.TasksBackup[this.TasksBackup.indexOf(bTask)] = this.Task;
+
+          } else {
             this.Tasks.unshift(this.Task);
             this.TasksBackup.unshift(this.Task);
           }
