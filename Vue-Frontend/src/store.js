@@ -34,6 +34,7 @@ export default {
         Vue.cookie.set("employee", JSON.stringify(res.data), 1);
         this.Employee = res.data;
         this.Login.ShowForm = false;
+        this.Authenticating = false;
         this.InitData();
 
       })
@@ -43,8 +44,14 @@ export default {
       })
   },
 
+  LogOut() {
+    this.Employee = null;
+    Vue.cookie.delete("employee");
+    this.Login.ShowForm = true;
+  },
+
   InitData() {
-    axios.get(this.API + "home")
+    axios.get(`${this.API}init/${this.Employee.Name}`)
       .then(res => {
         this.Teasers = res.data.Teasers;
         this.Tasks = res.data.Tasks;

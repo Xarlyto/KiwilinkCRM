@@ -88,7 +88,11 @@ export default {
   },
   computed: {
     enableDelete() {
-      return !this.Client.ReadOnly && this.Client.DeleteEnable;
+      return (
+        !this.Client.ReadOnly &&
+        this.Client.DeleteEnable &&
+        this.Employee.IsAdmin
+      );
     }
   }
 };

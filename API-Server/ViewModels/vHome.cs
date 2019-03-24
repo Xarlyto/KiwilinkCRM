@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using API_Server.Data;
 using API_Server.Models;
 
@@ -10,10 +7,10 @@ namespace API_Server.ViewModels
     public class vHome
     {
         public vTeaser[] Teasers { get; set; }
-        public Models.Task[] Tasks { get; set; }
+        public Task[] Tasks { get; set; }
         public vLists Lists { get; set; } = new vLists();
 
-        public void Load()
+        public void Load(string EmployeeName)
         {
             Teasers = (from c in DB.Collection<Client>()
                        orderby c.LastEditedOn descending
@@ -26,8 +23,8 @@ namespace API_Server.ViewModels
                            Institute = c.Institute
                        }).Take(25).ToArray();
 
-            Tasks = (from t in DB.Collection<Models.Task>()
-                     where t.IsComplete == false
+            Tasks = (from t in DB.Collection<Task>()
+                     where t.IsComplete == false && t.AssignedEmployeeName.Equals(EmployeeName)
                      orderby t.LastEditedOn descending
                      select t).Take(25).ToArray();
 

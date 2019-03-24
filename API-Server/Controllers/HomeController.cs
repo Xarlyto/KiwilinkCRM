@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using API_Server.Data;
 using API_Server.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using API_Server.ViewModels;
@@ -13,14 +12,13 @@ namespace API_Server.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        [HttpGet("api/home")]
-        public ActionResult<vHome> Home()
+        [HttpGet("api/init/{employee}")]
+        public ActionResult<vHome> Init(string employee)
         {
-            //System.Threading.Tasks.Task.Delay(3000).Wait();
             var vm = new vHome();
-            vm.Load();
+            vm.Load(employee);
             return vm;
-        }    
+        }
 
         [HttpGet("api/client/load/{id}")]
         public ActionResult<Client> LoadClient(string id)
@@ -54,7 +52,7 @@ namespace API_Server.Controllers
         [HttpGet("api/add-employee/{name}/{pass}")]
         public ActionResult<Employee> AddEmployee(string name, string pass)
         {
-            var emp = new Employee() { Name = name.TitleCaseMe(), Password =pass };
+            var emp = new Employee() { Name = name.TitleCaseMe(), Password = pass };
             emp.Save();
             return emp;
         }
@@ -63,7 +61,8 @@ namespace API_Server.Controllers
         public ActionResult<Employee> Authenticate(vLogin vm)
         {
             var employee = vm.Authenticate();
-            if (employee !=null) {
+            if (employee != null)
+            {
                 return employee;
             }
 

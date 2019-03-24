@@ -46,6 +46,7 @@
           small
           flat
           color="red lighten-2"
+          v-if="Employee.IsAdmin"
         >
           <v-icon size="20">fa-trash-alt</v-icon>
           delete
@@ -57,7 +58,7 @@
 
 <script>
 export default {
-  store: ["Teasers", "Client"],
+  store: ["Teasers", "Client", "Employee"],
   methods: {
     openClient(client) {
       this.$store.OpenClient(client);

@@ -22,9 +22,12 @@
         >
           fa-user-circle
         </v-icon>
-        Nalin
+        {{Employee.Name}}
       </v-btn>
-      <v-btn flat>
+      <v-btn
+        flat
+        @click="logOut"
+      >
         <v-icon
           color="purple darken-4"
           class="mr-2"
@@ -43,6 +46,9 @@ export default {
   methods: {
     newClient() {
       this.$store.NewClient();
+    },
+    logOut() {
+      this.$store.LogOut();
     }
   }
 };
