@@ -55,6 +55,7 @@
                 icon
                 @click="toggle"
                 large
+                v-if="Employee.IsAdmin"
               >
                 <v-icon size="28">fa-dollar-sign</v-icon>
               </v-btn>
@@ -514,7 +515,7 @@ export default {
     visaStatusList: ["Not Applied", "Applied", "Pending", "Approved"]
   }),
 
-  store: ["Client", "Lists", "CurrentWindow"],
+  store: ["Client", "Lists", "CurrentWindow", "Employee"],
 
   computed: {
     formColor() {

@@ -69,7 +69,7 @@
 
 <script>
 export default {
-  store: ["Client", "CurrentWindow", "ShowTaskAddBtn", "Task"],
+  store: ["Client", "CurrentWindow", "ShowTaskAddBtn", "Task", "Employee"],
   methods: {
     saveClient() {
       this.Client.Saving = true;

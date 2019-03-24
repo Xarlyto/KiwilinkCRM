@@ -48,6 +48,7 @@ export default {
     this.Employee = null;
     Vue.cookie.delete("employee");
     this.Login.ShowForm = true;
+    this.Login.Authenticating = false;
   },
 
   InitData() {
@@ -165,7 +166,7 @@ export default {
 
   OpenClient(cl, tsk) {
     cl.Loading = true;
-    axios.get(`${this.API}client/load/${cl.Id}`)
+    axios.get(`${this.API}client/load/${cl.Id}/${this.Employee.Name}`)
       .then(res => {
         this.Client = res.data;
 

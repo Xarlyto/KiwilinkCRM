@@ -20,11 +20,11 @@ namespace API_Server.Controllers
             return vm;
         }
 
-        [HttpGet("api/client/load/{id}")]
-        public ActionResult<Client> LoadClient(string id)
+        [HttpGet("api/client/load/{id}/{employee}")]
+        public ActionResult<Client> LoadClient(string id, string employee)
         {
             var client = new Client();
-            return client.Load(id);
+            return client.Load(id, employee);
         }
 
         [HttpPost("api/client/save")]

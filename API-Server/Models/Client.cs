@@ -109,14 +109,19 @@ namespace API_Server.Models
             DB.Save<Client>(this);
         }
 
-        public Client Load(string id)
+        public Client Load(string id, string employeeName)
         {
+            var cid = new ObjectId(id);
+
             var cl = (from c in DB.Collection<Client>()
-                      where c.Id.Equals(new ObjectId(id))
+                      where c.Id.Equals(cid)
                       select c).Single();
 
             cl.TaskList = (from t in DB.Collection<Task>()
-                           where t.ClientId.Equals(new ObjectId(id)) && t.IsComplete == false
+                           where
+                           t.ClientId.Equals(cid)
+                           && t.IsComplete == false
+                           && t.AssignedEmployeeName.Equals(employeeName)
                            orderby t.LastEditedOn descending
                            select t).ToArray();
 
