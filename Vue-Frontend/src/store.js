@@ -23,6 +23,7 @@ export default {
   CurrentWindow: 0,
   ShowTaskAddBtn: true,
   ShowTaskEditor: false,
+  FetchingTasks: false,
 
   Authenticate() {
     axios.post(this.API + "employee/authenticate",
@@ -56,6 +57,7 @@ export default {
       .then(res => {
         this.Teasers = res.data.Teasers;
         this.Tasks = res.data.Tasks;
+        this.TasksBackup = this.Tasks;
         this.Lists = res.data.Lists;
         this.Loading = false;
       });
@@ -200,5 +202,18 @@ export default {
   OpenTask(tsk) {
     this.Task = tsk;
     this.ShowTaskEditor = true;
+  },
+  FetchTasks(me, all) {
+    var employee = me ? this.Employee.Name : 'null';
+    var clientID = Object.keys(this.Client).length > 0 ? this.Client.Id : 'null'
+
+    axios.get(`${this.API}tasks/fetch/${employee}/${all}/${clientID}`)
+      .then(res => {
+        this.Tasks = res.data;
+        this.FetchingTasks = false;
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 };

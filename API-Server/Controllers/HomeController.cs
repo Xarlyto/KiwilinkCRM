@@ -49,6 +49,12 @@ namespace API_Server.Controllers
             return Ok();
         }
 
+        [HttpGet("api/tasks/fetch/{employee}/{all}/{cid}")]
+        public ActionResult<Task[]> FetchTasks(string employee, Boolean all, string cid)
+        {
+            return new Task().FetchTasks(employee,all,cid);
+        }
+
         [HttpGet("api/add-employee/{name}/{pass}")]
         public ActionResult<Employee> AddEmployee(string name, string pass)
         {

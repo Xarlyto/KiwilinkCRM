@@ -311,8 +311,48 @@
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
+                      v-model="Client.PathwayProgram1Link"
+                      label="Program 1 Link"
+                      :readonly="Client.ReadOnly"
+                      :background-color="formColor"
+                    ></v-text-field>
+                  </v-layout>
+                  <v-layout
+                    row
+                    wrap
+                    mx-4
+                  >
+                    <v-text-field
+                      class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.PathwayProgram2"
                       label="Pathway Program 2"
+                      :readonly="Client.ReadOnly"
+                      :background-color="formColor"
+                    ></v-text-field>
+                    <v-text-field
+                      class="ma-0 pa-0 mt-3 mr-3"
+                      v-model="Client.PathwayProgram2Link"
+                      label="Program 2 Link"
+                      :readonly="Client.ReadOnly"
+                      :background-color="formColor"
+                    ></v-text-field>
+                  </v-layout>
+                  <v-layout
+                    row
+                    wrap
+                    mx-4
+                  >
+                    <v-text-field
+                      class="ma-0 pa-0 mt-3 mr-3"
+                      v-model="Client.PathwayProgram3"
+                      label="Pathway Program 3"
+                      :readonly="Client.ReadOnly"
+                      :background-color="formColor"
+                    ></v-text-field>
+                    <v-text-field
+                      class="ma-0 pa-0 mt-3 mr-3"
+                      v-model="Client.PathwayProgram3Link"
+                      label="Program 3 Link"
                       :readonly="Client.ReadOnly"
                       :background-color="formColor"
                     ></v-text-field>

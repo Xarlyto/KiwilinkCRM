@@ -1,6 +1,49 @@
 <template>
   <v-container class="mt-0 pt-0">
-    <h1>Tasks</h1>
+    <v-layout
+      row
+      wrap
+    >
+      <v-flex
+        xs6
+        sm8
+        md6
+        lg8
+      >
+        <h1 class="tasks-header">Tasks
+        </h1>
+
+      </v-flex>
+      <v-flex
+        xs3
+        sm2
+        md3
+        lg2
+      >
+        <v-switch
+          v-model="onlyMe"
+          label="Me"
+          hide-details
+          @change="fetchTasks"
+          :loading="FetchingTasks"
+        ></v-switch>
+
+      </v-flex>
+      <v-flex
+        xs3
+        sm2
+        md3
+        lg2
+      >
+        <v-switch
+          v-model="showAll"
+          hide-details
+          label="All"
+          @change="fetchTasks"
+          :loading="FetchingTasks"
+        ></v-switch>
+      </v-flex>
+    </v-layout>
     <v-card
       v-if="Tasks.length==0"
       flat
@@ -14,7 +57,7 @@
       :key="t.Id"
       class="mb-2"
     >
-      <v-card-title class="pa-2 blue darken-3 white--text">
+      <v-card-title :class="`pa-2 ${t.IsComplete?'green':'blue'} darken-3 white--text`">
         <a
           href="#"
           class="white--text no-underline"
@@ -53,6 +96,7 @@
           color="green darken-3"
           @click="completeTask(t)"
           :loading="t.Completing"
+          v-if="!t.IsComplete"
         >
           <v-icon>fa-check</v-icon>
         </v-btn>
@@ -101,13 +145,18 @@
 
 <script>
 export default {
-  store: ["Tasks", "Task", "Lists", "ShowTaskEditor"],
+  data: () => ({
+    onlyMe: true,
+    showAll: false
+  }),
+  store: ["Tasks", "Task", "Lists", "ShowTaskEditor", "FetchingTasks"],
   methods: {
     editTask(task) {
       this.$store.OpenTask(task);
     },
     saveTask() {
       this.Task.Saving = true;
+      this.Task.IsComplete = false;
       this.$store.SaveTask();
     },
     completeTask(task) {
@@ -117,6 +166,10 @@ export default {
     openClient(task) {
       task.OpeningClient = true;
       this.$store.OpenClient({ Id: task.ClientId }, task);
+    },
+    fetchTasks() {
+      this.FetchingTasks = true;
+      this.$store.FetchTasks(this.onlyMe, this.showAll);
     }
   }
 };
@@ -125,5 +178,9 @@ export default {
 <style scoped>
 .v-card {
   border-radius: 7px !important;
+}
+
+.v-input--switch {
+  margin-top: 5px;
 }
 </style>

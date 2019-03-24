@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="app">
     <v-content>
       <tool-bar />
       <v-container v-if="!Employee">
@@ -104,6 +104,11 @@ export default {
 }
 .no-underline {
   text-decoration: none;
+}
+
+.app {
+  border-left: 1px solid rgb(228, 228, 228);
+  border-right: 1px solid rgb(228, 228, 228);
 }
 </style>
 
