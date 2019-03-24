@@ -2,7 +2,47 @@
   <v-app>
     <v-content>
       <tool-bar />
-      <v-container grid-list-lg>
+      <v-container v-if="!Employee">
+        <v-dialog
+          v-model="Login.ShowForm"
+          max-width="500px"
+          persistent
+        >
+          <v-card class="pa-3">
+            <v-card-title class="pa-3">
+              <h2 class="blue--text">Please Log In...</h2>
+            </v-card-title>
+            <v-card-text class="pb-0">
+              <v-text-field
+                label="USERNAME"
+                box
+                v-model="Login.Username"
+              ></v-text-field>
+              <v-text-field
+                label="PASSWORD"
+                box
+                type="password"
+                v-model="Login.Password"
+              ></v-text-field>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn
+                dark
+                color="green darken-3"
+                class="ml-2"
+                :loading="Login.Authenticating"
+                @click="authenticate"
+              >
+                <v-icon class="mr-2">fa-sign-in-alt</v-icon> Log In
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-container>
+      <v-container
+        v-if="Employee"
+        grid-list-lg
+      >
         <v-layout
           row
           wrap
@@ -43,9 +83,17 @@ import Client from "./cmp/Client";
 export default {
   name: "App",
   components: { ToolBar, Teasers, Finder, Tasks, Client },
-  store: ["Loading"],
+  store: ["Loading", "Employee", "Login"],
+  data: () => ({}),
   created() {
-    this.$store.InitData();
+    this.Employee = JSON.parse(this.$cookie.get("employee"));
+    this.Employee ? this.$store.InitData() : (this.Login.ShowForm = true);
+  },
+  methods: {
+    authenticate() {
+      this.Login.Authenticating = true;
+      this.$store.Authenticate();
+    }
   }
 };
 </script>

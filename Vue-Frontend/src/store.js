@@ -1,7 +1,15 @@
 import axios from 'axios';
 import moment from 'moment';
+import Vue from 'vue';
 
 export default {
+  Employee: null,
+  Login: {
+    ShowForm: false,
+    Authenticating: false,
+    Username: '',
+    Password: ''
+  },
   Client: {},
   Teasers: [],
   Tasks: [],
@@ -15,6 +23,25 @@ export default {
   CurrentWindow: 0,
   ShowTaskAddBtn: true,
   ShowTaskEditor: false,
+
+  Authenticate() {
+    axios.post(this.API + "employee/authenticate",
+      {
+        Username: this.Login.Username,
+        Password: this.Login.Password
+      })
+      .then(res => {
+        Vue.cookie.set("employee", JSON.stringify(res.data), 1);
+        this.Employee = res.data;
+        this.Login.ShowForm = false;
+        this.InitData();
+
+      })
+      .catch(err => {
+        this.Login.Authenticating = false;
+        alert("Sorry! Login unsuccessful...")
+      })
+  },
 
   InitData() {
     axios.get(this.API + "home")
@@ -129,7 +156,7 @@ export default {
     this.ShowTaskAddBtn = false;
   },
 
-  OpenClient(cl) {
+  OpenClient(cl, tsk) {
     cl.Loading = true;
     axios.get(`${this.API}client/load/${cl.Id}`)
       .then(res => {
@@ -145,6 +172,7 @@ export default {
         this.TasksBackup = this.Tasks;
         this.Tasks = res.data.TaskList;
         cl.Loading = false;
+        if (tsk) tsk.OpeningClient = false;
         this.ShowTaskAddBtn = true;
         this.Client.DeleteEnable = true;
       })

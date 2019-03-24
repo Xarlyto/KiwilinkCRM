@@ -17,6 +17,7 @@ namespace API_Server.Models
 
         [BsonIgnore] public bool Saving { get; set; }
         [BsonIgnore] public bool Completing { get; set; }
+        [BsonIgnore] public bool OpeningClient { get; set; }
 
         public void Save()
         {

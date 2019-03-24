@@ -18,8 +18,16 @@
         <a
           href="#"
           class="white--text no-underline"
-          @click.prevent="openClient(t.ClientId)"
+          @click.prevent="openClient(t)"
         >{{t.ClientName}}</a>
+        <v-progress-circular
+          indeterminate
+          size="17"
+          width="2"
+          color="white"
+          class="ml-1"
+          v-if="t.OpeningClient"
+        ></v-progress-circular>
       </v-card-title>
       <v-card-text class="pb-0">
         {{t.Content}}
@@ -106,8 +114,9 @@ export default {
       task.Completing = true;
       this.$store.CompleteTask(task.Id);
     },
-    openClient(cid) {
-      this.$store.OpenClient({ Id: cid });
+    openClient(task) {
+      task.OpeningClient = true;
+      this.$store.OpenClient({ Id: task.ClientId }, task);
     }
   }
 };

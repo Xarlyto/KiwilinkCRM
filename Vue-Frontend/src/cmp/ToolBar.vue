@@ -2,7 +2,7 @@
   <v-toolbar>
     <v-toolbar-title><span class="display-2 purple darken-4 white--text pa-1">KIWILINK</span><span class="font-weight-black display-1">CRM</span></v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-toolbar-items>
+    <v-toolbar-items v-if="Employee">
       <v-btn
         flat
         @click="newClient"
@@ -39,6 +39,7 @@
 
 <script>
 export default {
+  store: ["Employee"],
   methods: {
     newClient() {
       this.$store.NewClient();

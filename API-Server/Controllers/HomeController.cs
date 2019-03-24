@@ -58,6 +58,17 @@ namespace API_Server.Controllers
             emp.Save();
             return emp;
         }
+
+        [HttpPost("api/employee/authenticate")]
+        public ActionResult<Employee> Authenticate(vLogin vm)
+        {
+            var employee = vm.Authenticate();
+            if (employee !=null) {
+                return employee;
+            }
+
+            return BadRequest();
+        }
     }
 
 }
