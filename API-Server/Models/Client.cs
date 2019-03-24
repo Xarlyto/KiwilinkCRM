@@ -116,7 +116,7 @@ namespace API_Server.Models
                       select c).Single();
 
             cl.TaskList = (from t in DB.Collection<Task>()
-                           where t.ClientId.Equals(new ObjectId(id))
+                           where t.ClientId.Equals(new ObjectId(id)) && t.IsComplete == false
                            orderby t.LastEditedOn descending
                            select t).ToArray();
 

@@ -110,6 +110,7 @@ export default {
       DeleteEnable: false,
       TaskList: [],
     };
+    if (Object.keys(this.Client).length = 0) this.TasksBackup = this.Tasks;
     this.Tasks = [];
     this.ShowTaskAddBtn = false;
   },
