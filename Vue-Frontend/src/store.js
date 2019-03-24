@@ -103,6 +103,20 @@ export default {
     }
   },
 
+  CompleteTask(id) {
+    axios.get(`${this.API}task/complete/${id}`)
+      .then(res => {
+        var t = this.Tasks.find(t => t.Id == id);
+        this.Tasks.splice(this.Tasks.indexOf(t), 1);
+
+        t = this.TasksBackup.find(t => t.Id == id);
+        this.TasksBackup.splice(this.TasksBackup.indexOf(t), 1);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  },
+
   NewClient() {
     this.Client = {
       Id: '',

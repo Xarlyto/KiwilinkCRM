@@ -43,6 +43,8 @@
           dark
           flat
           color="green darken-3"
+          @click="completeTask(t)"
+          :loading="t.Completing"
         >
           <v-icon>fa-check</v-icon>
         </v-btn>
@@ -99,6 +101,10 @@ export default {
     saveTask() {
       this.Task.Saving = true;
       this.$store.SaveTask();
+    },
+    completeTask(task) {
+      task.Completing = true;
+      this.$store.CompleteTask(task.Id);
     },
     openClient(cid) {
       this.$store.OpenClient({ Id: cid });

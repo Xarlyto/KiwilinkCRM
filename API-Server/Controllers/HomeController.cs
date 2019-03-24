@@ -43,6 +43,14 @@ namespace API_Server.Controllers
             return task.Id.ToString();
         }
 
+        [HttpGet("api/task/complete/{id}")]
+        public IActionResult CompleteTask(string id)
+        {
+            var task = new Task();
+            task.MarkComplete(new ObjectId(id));
+            return Ok();
+        }
+
         [HttpGet("api/add-employee/{name}/{pass}")]
         public ActionResult<Employee> AddEmployee(string name, string pass)
         {
