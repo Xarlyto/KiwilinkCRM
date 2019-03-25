@@ -113,7 +113,7 @@ namespace API_Server.Models
             DB.Save<Client>(this);
         }
 
-        public Client Load(string id, string employeeName)
+        public Client Load(string id, string employeeName, bool all)
         {
             var cid = new ObjectId(id);
 
@@ -121,13 +121,7 @@ namespace API_Server.Models
                       where c.Id.Equals(cid)
                       select c).Single();
 
-            cl.TaskList = (from t in DB.Collection<Task>()
-                           where
-                           t.ClientId.Equals(cid)
-                           && t.IsComplete == false
-                           && t.AssignedEmployeeName.Equals(employeeName)
-                           orderby t.LastEditedOn descending
-                           select t).ToArray();
+            cl.TaskList = new Task().FetchTasks(employeeName, all, id);
 
             return cl;
         }

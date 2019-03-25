@@ -21,12 +21,12 @@ namespace API_Server.ViewModels
                            Mobile = c.Mobile,
                            Course = c.Course,
                            Institute = c.Institute
-                       }).Take(25).ToArray();
+                       }).Take(50).ToArray();
 
             Tasks = (from t in DB.Collection<Task>()
                      where t.IsComplete == false && t.AssignedEmployeeName.Equals(EmployeeName)
                      orderby t.LastEditedOn descending
-                     select t).Take(25).ToArray();
+                     select t).Take(100).ToArray();
 
             Lists.Load();
         }

@@ -20,11 +20,17 @@ namespace API_Server.Controllers
             return vm;
         }
 
-        [HttpGet("api/client/load/{id}/{employee}")]
-        public ActionResult<Client> LoadClient(string id, string employee)
+        [HttpGet("api/client/load/{cid}/{employee}/{all}")]
+        public ActionResult<Client> LoadClient(string cid, string employee, bool all)
         {
             var client = new Client();
-            return client.Load(id, employee);
+            return client.Load(cid, employee, all);
+        }
+
+        [HttpGet("api/tasks/fetch/{employee}/{all}/{cid}")]
+        public ActionResult<Task[]> FetchTasks(string employee, Boolean all, string cid)
+        {
+            return new Task().FetchTasks(employee, all, cid);
         }
 
         [HttpPost("api/client/save")]
@@ -47,12 +53,6 @@ namespace API_Server.Controllers
             var task = new Task();
             task.MarkComplete(new ObjectId(id));
             return Ok();
-        }
-
-        [HttpGet("api/tasks/fetch/{employee}/{all}/{cid}")]
-        public ActionResult<Task[]> FetchTasks(string employee, Boolean all, string cid)
-        {
-            return new Task().FetchTasks(employee,all,cid);
         }
 
         [HttpGet("api/add-employee/{name}/{pass}")]

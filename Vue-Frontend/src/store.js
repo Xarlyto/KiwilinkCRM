@@ -13,7 +13,11 @@ export default {
   Client: {},
   Teasers: [],
   Tasks: [],
-  TasksBackup: [],
+  TaskFilters: {
+    onlyMe: true,
+    showAll: false,
+    FetchingTasks: false
+  },
   Task: {},
   SearchByValue: "Name",
   SearchTerm: "",
@@ -23,7 +27,6 @@ export default {
   CurrentWindow: 0,
   ShowTaskAddBtn: true,
   ShowTaskEditor: false,
-  FetchingTasks: false,
 
   Authenticate() {
     axios.post(this.API + "employee/authenticate",
@@ -57,7 +60,6 @@ export default {
       .then(res => {
         this.Teasers = res.data.Teasers;
         this.Tasks = res.data.Tasks;
-        this.TasksBackup = this.Tasks;
         this.Lists = res.data.Lists;
         this.Loading = false;
       });
@@ -122,12 +124,8 @@ export default {
             var mTask = this.Tasks.find(t => t.Id == this.Task.Id);
             if (mTask) mTask = this.Task;
 
-            var bTask = this.TasksBackup.find(t => t.Id == this.Task.Id);
-            this.TasksBackup[this.TasksBackup.indexOf(bTask)] = this.Task;
-
           } else {
             this.Tasks.unshift(this.Task);
-            this.TasksBackup.unshift(this.Task);
           }
 
           this.ShowTaskEditor = false;
@@ -145,9 +143,6 @@ export default {
       .then(res => {
         var t = this.Tasks.find(t => t.Id == id);
         this.Tasks.splice(this.Tasks.indexOf(t), 1);
-
-        t = this.TasksBackup.find(t => t.Id == id);
-        this.TasksBackup.splice(this.TasksBackup.indexOf(t), 1);
       })
       .catch(err => {
         console.log(err);
@@ -161,14 +156,15 @@ export default {
       DeleteEnable: false,
       TaskList: [],
     };
-    if (Object.keys(this.Client).length = 0) this.TasksBackup = this.Tasks;
     this.Tasks = [];
     this.ShowTaskAddBtn = false;
   },
 
   OpenClient(cl, tsk) {
     cl.Loading = true;
-    axios.get(`${this.API}client/load/${cl.Id}/${this.Employee.Name}`)
+    var employee = this.TaskFilters.onlyMe ? this.Employee.Name : 'null';
+
+    axios.get(`${this.API}client/load/${cl.Id}/${employee}/${this.TaskFilters.showAll}`)
       .then(res => {
         this.Client = res.data;
 
@@ -179,7 +175,6 @@ export default {
         this.Client.VisaAppliedDate = this.FormatDate(this.Client.VisaAppliedDate);
         this.Client.VisaApprovedDate = this.FormatDate(this.Client.VisaApprovedDate);
 
-        this.TasksBackup = this.Tasks;
         this.Tasks = res.data.TaskList;
         cl.Loading = false;
         if (tsk) tsk.OpeningClient = false;
@@ -191,7 +186,7 @@ export default {
   CloseClient() {
     this.Client = {};
     this.CurrentWindow = 0;
-    this.Tasks = this.TasksBackup;
+    this.FetchTasks();
   },
 
   FormatDate(date) {
@@ -203,14 +198,16 @@ export default {
     this.Task = tsk;
     this.ShowTaskEditor = true;
   },
-  FetchTasks(me, all) {
-    var employee = me ? this.Employee.Name : 'null';
+
+  FetchTasks() {
+    this.TaskFilters.FetchingTasks = true;
+    var employee = this.TaskFilters.onlyMe ? this.Employee.Name : 'null';
     var clientID = Object.keys(this.Client).length > 0 ? this.Client.Id : 'null'
 
-    axios.get(`${this.API}tasks/fetch/${employee}/${all}/${clientID}`)
+    axios.get(`${this.API}tasks/fetch/${employee}/${this.TaskFilters.showAll}/${clientID}`)
       .then(res => {
         this.Tasks = res.data;
-        this.FetchingTasks = false;
+        this.TaskFilters.FetchingTasks = false;
       })
       .catch(err => {
         console.log(err);

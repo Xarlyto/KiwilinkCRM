@@ -21,11 +21,11 @@
         lg2
       >
         <v-switch
-          v-model="onlyMe"
+          v-model="TaskFilters.onlyMe"
           label="Me"
           hide-details
           @change="fetchTasks"
-          :loading="FetchingTasks"
+          :loading="TaskFilters.FetchingTasks"
         ></v-switch>
 
       </v-flex>
@@ -36,11 +36,11 @@
         lg2
       >
         <v-switch
-          v-model="showAll"
+          v-model="TaskFilters.showAll"
           hide-details
           label="All"
           @change="fetchTasks"
-          :loading="FetchingTasks"
+          :loading="TaskFilters.FetchingTasks"
         ></v-switch>
       </v-flex>
     </v-layout>
@@ -145,11 +145,15 @@
 
 <script>
 export default {
-  data: () => ({
-    onlyMe: true,
-    showAll: false
-  }),
-  store: ["Tasks", "Task", "Lists", "ShowTaskEditor", "FetchingTasks"],
+  data: () => ({}),
+  store: [
+    "Tasks",
+    "Task",
+    "Lists",
+    "ShowTaskEditor",
+    "FetchingTasks",
+    "TaskFilters"
+  ],
   methods: {
     editTask(task) {
       this.$store.OpenTask(task);
@@ -168,8 +172,7 @@ export default {
       this.$store.OpenClient({ Id: task.ClientId }, task);
     },
     fetchTasks() {
-      this.FetchingTasks = true;
-      this.$store.FetchTasks(this.onlyMe, this.showAll);
+      this.$store.FetchTasks();
     }
   }
 };
