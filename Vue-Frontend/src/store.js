@@ -212,5 +212,17 @@ export default {
       .catch(err => {
         console.log(err);
       })
+  },
+
+  Search() {
+    this.Loading = true;
+    axios.get(`${this.API}search/${this.SearchTerm}/${this.SearchByValue}`)
+      .then(res => {
+        this.Teasers = res.data;
+        this.Loading = false;
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 };

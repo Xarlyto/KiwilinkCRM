@@ -17,6 +17,7 @@
           v-model="SearchTerm"
           label="Search Term"
           append-icon="fa-search"
+          @keypress.enter="doSearch"
         ></v-text-field>
       </v-flex>
     </v-layout>
@@ -26,10 +27,16 @@
 <script>
 export default {
   data: () => ({
-    SearchByList: ["Name", "Passport #", "Phone", "Country"]
+    SearchByList: ["Name", "Surname", "Passport", "Phone", "Country"]
   }),
   store: ["SearchByValue", "SearchTerm"],
-  methods: {}
+  methods: {
+    doSearch() {
+      if (this.SearchTerm) {
+        this.$store.Search();
+      }
+    }
+  }
 };
 </script>
 

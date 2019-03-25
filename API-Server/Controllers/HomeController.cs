@@ -6,6 +6,7 @@ using API_Server.Models;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using API_Server.ViewModels;
+using MongoDB.Driver.Linq;
 
 namespace API_Server.Controllers
 {
@@ -73,6 +74,45 @@ namespace API_Server.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpGet("api/search/{term}/{type}")]
+        public ActionResult<vTeaser[]> Search(string term, string type)
+        {
+
+            var clients = from c in DB.Collection<Client>()
+                          select c;
+
+            switch (type)
+            {
+                case "Name":
+                    clients = clients.Where(c => c.Name.ToLower().Contains(term.ToLower()));
+                    break;
+                case "Surname":
+                    clients = clients.Where(c => c.Surname.ToLower().Contains(term.ToLower()));
+                    break;
+                case "Passport":
+                    clients = clients.Where(c => c.Passport.ToLower().Contains(term.ToLower()));
+                    break;
+                case "Phone":
+                    clients = clients.Where(c => c.Mobile.ToLower().Contains(term.ToLower()));
+                    break;
+                case "Country":
+                    clients = clients.Where(c => c.CourseCountry.ToLower().Contains(term.ToLower()));
+                    break;
+                default:
+                    break;
+            }
+
+            return (from c in clients
+                    select new vTeaser()
+                    {
+                        Course = c.Course,
+                        Id = c.Id,
+                        Institute = c.Institute,
+                        Mobile = c.Mobile,
+                        Name = c.Name + " " + c.Surname
+                    }).ToArray();
         }
     }
 
