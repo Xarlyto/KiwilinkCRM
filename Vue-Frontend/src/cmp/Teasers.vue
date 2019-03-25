@@ -1,6 +1,12 @@
 <template>
   <div v-if="Object.keys(Client).length == 0">
     <v-card
+      v-if="Teasers.length==0 && !Loading"
+      class="pa-3 grey--text"
+    >
+      No clients found...
+    </v-card>
+    <v-card
       v-for="t in Teasers"
       :key="t.Id"
       class="ma-1 pa-3"
@@ -58,7 +64,7 @@
 
 <script>
 export default {
-  store: ["Teasers", "Client", "Employee"],
+  store: ["Teasers", "Client", "Employee", "Loading"],
   methods: {
     openClient(client) {
       this.$store.OpenClient(client);
