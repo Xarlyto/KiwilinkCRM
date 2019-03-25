@@ -27,18 +27,7 @@
       >fa-save</v-icon>
       save
     </v-btn>
-    <v-btn
-      small
-      flat
-      color="red lighten-2"
-      v-if="enableDelete"
-    >
-      <v-icon
-        class="mr-2"
-        size="20"
-      >fa-trash-alt</v-icon>
-      delete
-    </v-btn>
+
     <v-btn
       small
       flat
@@ -63,6 +52,16 @@
         size="20"
       >fa-times-circle</v-icon>
       close
+    </v-btn>
+
+    <v-spacer></v-spacer>
+    <v-btn
+      small
+      flat
+      color="red lighten-2"
+      v-if="enableDelete"
+    >
+      <v-icon size="20">fa-trash-alt</v-icon>
     </v-btn>
   </v-card-actions>
 </template>

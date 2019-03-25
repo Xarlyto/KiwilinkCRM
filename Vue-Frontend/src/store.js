@@ -40,7 +40,7 @@ export default {
         this.Login.ShowForm = false;
         this.Authenticating = false;
         this.InitData();
-
+        this.Login.Password = '';
       })
       .catch(err => {
         this.Login.Authenticating = false;
@@ -87,7 +87,7 @@ export default {
           teaser.Course = this.Client.Course;
           teaser.Institute = this.Client.Institute;
 
-          this.Teasers.splice(this.Teasers.indexOf(teaser), 1);
+          if (client.Id != '') this.Teasers.splice(this.Teasers.indexOf(teaser), 1);
           this.Teasers.unshift(teaser);
 
           this.Client.Saving = false;
@@ -215,8 +215,11 @@ export default {
   },
 
   Search() {
+    this.Teasers = [];
     this.Loading = true;
-    axios.get(`${this.API}search/${this.SearchTerm}/${this.SearchByValue}`)
+    this.CloseClient();
+    var searchTerm = this.SearchTerm ? this.SearchTerm : 'null';
+    axios.get(`${this.API}search/${searchTerm}/${this.SearchByValue}`)
       .then(res => {
         this.Teasers = res.data;
         this.Loading = false;

@@ -48,6 +48,7 @@
           <v-icon size="20">fa-folder-open</v-icon>
           open
         </v-btn>
+        <v-spacer></v-spacer>
         <v-btn
           small
           flat
@@ -55,7 +56,6 @@
           v-if="Employee.IsAdmin"
         >
           <v-icon size="20">fa-trash-alt</v-icon>
-          delete
         </v-btn>
       </v-card-actions>
     </v-card>

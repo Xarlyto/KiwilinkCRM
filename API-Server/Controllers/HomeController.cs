@@ -83,28 +83,38 @@ namespace API_Server.Controllers
             var clients = from c in DB.Collection<Client>()
                           select c;
 
-            switch (type)
+            if (term != "null")
             {
-                case "Name":
-                    clients = clients.Where(c => c.Name.ToLower().Contains(term.ToLower()));
-                    break;
-                case "Surname":
-                    clients = clients.Where(c => c.Surname.ToLower().Contains(term.ToLower()));
-                    break;
-                case "Passport":
-                    clients = clients.Where(c => c.Passport.ToLower().Contains(term.ToLower()));
-                    break;
-                case "Phone":
-                    clients = clients.Where(c => c.Mobile.ToLower().Contains(term.ToLower()));
-                    break;
-                case "Country":
-                    clients = clients.Where(c => c.CourseCountry.ToLower().Contains(term.ToLower()));
-                    break;
-                default:
-                    break;
+                switch (type)
+                {
+                    case "Name":
+                        clients = clients.Where(c => c.Name.ToLower().Contains(term.ToLower()));
+                        break;
+                    case "Surname":
+                        clients = clients.Where(c => c.Surname.ToLower().Contains(term.ToLower()));
+                        break;
+                    case "Passport":
+                        clients = clients.Where(c => c.Passport.ToLower().Contains(term.ToLower()));
+                        break;
+                    case "Mobile":
+                        clients = clients.Where(c => c.Mobile.ToLower().Contains(term.ToLower()));
+                        break;
+                    case "Country":
+                        clients = clients.Where(c => c.CourseCountry.ToLower().Contains(term.ToLower()));
+                        break;
+                    case "Institute":
+                        clients = clients.Where(c => c.Institute.ToLower().Contains(term.ToLower()));
+                        break;
+                    case "Course":
+                        clients = clients.Where(c => c.Course.ToLower().Contains(term.ToLower()));
+                        break;
+                    default:
+                        break;
+                }
             }
 
             return (from c in clients
+                    orderby c.LastEditedOn descending
                     select new vTeaser()
                     {
                         Course = c.Course,
@@ -112,7 +122,7 @@ namespace API_Server.Controllers
                         Institute = c.Institute,
                         Mobile = c.Mobile,
                         Name = c.Name + " " + c.Surname
-                    }).ToArray();
+                    }).Take(100).ToArray();
         }
     }
 

@@ -21,7 +21,7 @@ namespace API_Server.ViewModels
                            Mobile = c.Mobile,
                            Course = c.Course,
                            Institute = c.Institute
-                       }).Take(50).ToArray();
+                       }).Take(100).ToArray();
 
             Tasks = (from t in DB.Collection<Task>()
                      where t.IsComplete == false && t.AssignedEmployeeName.Equals(EmployeeName)
