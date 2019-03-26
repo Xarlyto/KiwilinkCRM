@@ -5,6 +5,7 @@ using Pluralize.NET;
 using Kiwilink.Models;
 using MongoDB.Bson;
 using MongoDB.Driver.Linq;
+using System.Linq.Expressions;
 
 namespace Kiwilink.Data
 {
@@ -48,7 +49,12 @@ namespace Kiwilink.Data
 
         public static void Delete<T>(ObjectId id) where T: Base {
             collection<T>().DeleteOne(x => x.Id.Equals(id));
-        }       
+         }
+
+        public static void DeleteMany<T>(Expression<Func<T,bool>> expression) where T : Base
+        {
+            collection<T>().DeleteMany(expression);
+        }
     }
 
 }

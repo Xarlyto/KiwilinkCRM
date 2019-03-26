@@ -27,17 +27,25 @@ namespace Kiwilink.Controllers
             return client.Load(cid, employee, all);
         }
 
-        [HttpGet("api/tasks/fetch/{employee}/{all}/{cid}")]
-        public ActionResult<Task[]> FetchTasks(string employee, Boolean all, string cid)
-        {
-            return new Task().FetchTasks(employee, all, cid);
-        }
-
         [HttpPost("api/client/save")]
         public ActionResult<string> SaveClient(Client client)
         {
             client.Save();
             return client.Id.ToString();
+        }
+
+        [HttpGet("api/client/delete/{cid}")]
+        public IActionResult DeleteClient(string cid)
+        {
+            var client = new Client();
+            client.Delete(cid);
+            return Ok();
+        }
+
+        [HttpGet("api/tasks/fetch/{employee}/{all}/{cid}")]
+        public ActionResult<Task[]> FetchTasks(string employee, Boolean all, string cid)
+        {
+            return new Task().FetchTasks(employee, all, cid);
         }
 
         [HttpPost("api/task/save")]

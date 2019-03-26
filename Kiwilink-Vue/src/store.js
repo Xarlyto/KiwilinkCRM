@@ -86,8 +86,7 @@ export default {
           teaser.Course = this.Client.Course;
           teaser.Institute = this.Client.Institute;
 
-          if (client.Id != "")
-            this.Teasers.splice(this.Teasers.indexOf(teaser), 1);
+          if (client.Id != "") this.Teasers.splice(this.Teasers.indexOf(teaser), 1);
           this.Teasers.unshift(teaser);
 
           this.Client.Saving = false;
@@ -169,7 +168,7 @@ export default {
     axios
       .get(
         `${this.API}client/load/${cl.Id}/${employee}/${
-          this.TaskFilters.showAll
+        this.TaskFilters.showAll
         }`
       )
       .then(res => {
@@ -225,7 +224,7 @@ export default {
     axios
       .get(
         `${this.API}tasks/fetch/${employee}/${
-          this.TaskFilters.showAll
+        this.TaskFilters.showAll
         }/${clientID}`
       )
       .then(res => {
@@ -251,5 +250,16 @@ export default {
       .catch(err => {
         console.log(err);
       });
+  },
+
+  DeleteClient(cid) {
+    axios.get(`${this.API}client/delete/${cid}`)
+      .then(() => {
+        var teaser = this.Teasers.find(t => t.Id == cid);
+        this.Teasers.splice(this.Teasers.indexOf(teaser), 1);
+        this.FetchTasks();
+      }).catch(err => {
+        console.log(err);
+      })
   }
 };

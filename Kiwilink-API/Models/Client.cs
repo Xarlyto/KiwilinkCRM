@@ -125,5 +125,12 @@ namespace Kiwilink.Models
 
             return cl;
         }
+
+        public void Delete(string id)
+        {
+            var oid = new ObjectId(id);
+
+            DB.DeleteMany<Task>(t=> t.ClientId.Equals(oid));
+        }
     }
 }
