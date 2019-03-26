@@ -129,8 +129,8 @@ namespace Kiwilink.Models
         public void Delete(string id)
         {
             var oid = new ObjectId(id);
-
-            DB.DeleteMany<Task>(t=> t.ClientId.Equals(oid));
+            DB.DeleteMany<Task>(t => t.ClientId.Equals(oid));
+            DB.Delete<Client>(oid);
         }
     }
 }

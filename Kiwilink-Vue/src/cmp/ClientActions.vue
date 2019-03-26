@@ -38,7 +38,13 @@
     </v-btn>
 
     <v-spacer></v-spacer>
-    <v-btn small flat color="red lighten-2" v-if="enableDelete">
+    <v-btn
+      small
+      flat
+      color="red lighten-2"
+      v-if="enableDelete"
+      @click="deleteClient"
+    >
       <v-icon size="20">fa-trash-alt</v-icon>
     </v-btn>
   </v-card-actions>
@@ -54,6 +60,13 @@ export default {
     },
     closeClient() {
       this.$store.CloseClient();
+    },
+    deleteClient() {
+      this.$confirm("Are you sure you want to delete?").then(yes => {
+        if (yes) {
+          this.$store.DeleteClient(this.Client.Id);
+        }
+      });
     },
     addTask() {
       this.$store.OpenTask({
