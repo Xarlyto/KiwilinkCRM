@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "API_Server": {
+    "Kestral": {
       "commandName": "Project",
       "launchBrowser": false,
       "launchUrl": "/",
