@@ -2,7 +2,7 @@
 A simple **C**ustomer **R**elationship **M**anagement web app for an `Education Consultation Service`. Shows how to do full stack rapid app development with the following technologies in very little time and effort compared to following all the industry standards and best practises.
 
 **Tech Stack**
-- Frontend: Vuetify + VueJS + VueStash for state management [no Vuex or Vue Router]
+- Frontend: Vuetify + VueJS + VueStash [for state management, no Vuex here]
 - API Server: ASP.Net Core Web API [no ASP Identity or authentication but simple clear text password checking/storage]
 - Data Access: MongoDB using C# LINQ queries [with a generic repository]
 
