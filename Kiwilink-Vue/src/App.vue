@@ -3,11 +3,7 @@
     <v-content>
       <tool-bar />
       <v-container v-if="!Employee">
-        <v-dialog
-          v-model="Login.ShowForm"
-          max-width="500px"
-          persistent
-        >
+        <v-dialog v-model="Login.ShowForm" max-width="500px" persistent>
           <v-card class="pa-3">
             <v-card-title class="pa-3">
               <h2 class="blue--text">Please Log In...</h2>
@@ -40,18 +36,9 @@
           </v-card>
         </v-dialog>
       </v-container>
-      <v-container
-        v-if="Employee"
-        grid-list-lg
-      >
-        <v-layout
-          row
-          wrap
-        >
-          <v-flex
-            xs12
-            md7
-          >
+      <v-container v-if="Employee" grid-list-lg>
+        <v-layout row wrap>
+          <v-flex xs12 md7>
             <v-progress-linear
               v-if="Loading"
               color="green"
@@ -61,10 +48,7 @@
             <client />
             <teasers />
           </v-flex>
-          <v-flex
-            xs12
-            md5
-          >
+          <v-flex xs12 md5>
             <finder />
             <tasks />
           </v-flex>

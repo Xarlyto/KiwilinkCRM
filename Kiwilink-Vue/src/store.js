@@ -156,6 +156,8 @@ export default {
       Id: "",
       ReadOnly: false,
       DeleteEnable: false,
+      Pathways: [],
+      Commissions: [],
       TaskList: []
     };
     this.Tasks = [];
@@ -191,6 +193,12 @@ export default {
         this.Client.VisaApprovedDate = this.FormatDate(
           this.Client.VisaApprovedDate
         );
+
+        if (this.Client.Commissions) {
+          this.Client.Commissions.forEach(
+            c => (c.Date = this.FormatDate(c.Date))
+          );
+        }
 
         this.Tasks = res.data.TaskList;
         cl.Loading = false;

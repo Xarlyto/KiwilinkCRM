@@ -1,22 +1,11 @@
 <template>
-  <v-card
-    v-if="Object.keys(Client).length > 0"
-    class="ma-1"
-  >
+  <v-card v-if="Object.keys(Client).length > 0" class="ma-1">
     <v-container>
       <v-layout class="pl-2">
-        <v-item-group
-          v-model="CurrentWindow"
-          class="grey lighten-4 rounded"
-        >
+        <v-item-group v-model="CurrentWindow" class="grey lighten-4 rounded">
           <v-item>
             <div slot-scope="{ active, toggle }">
-              <v-btn
-                :input-value="active"
-                icon
-                @click="toggle"
-                large
-              >
+              <v-btn :input-value="active" icon @click="toggle" large>
                 <v-icon size="28">fa-user-circle</v-icon>
               </v-btn>
             </div>
@@ -24,12 +13,7 @@
 
           <v-item>
             <div slot-scope="{ active, toggle }">
-              <v-btn
-                :input-value="active"
-                icon
-                @click="toggle"
-                large
-              >
+              <v-btn :input-value="active" icon @click="toggle" large>
                 <v-icon size="27">fa-graduation-cap</v-icon>
               </v-btn>
             </div>
@@ -37,12 +21,7 @@
 
           <v-item>
             <div slot-scope="{ active, toggle }">
-              <v-btn
-                :input-value="active"
-                icon
-                @click="toggle"
-                large
-              >
+              <v-btn :input-value="active" icon @click="toggle" large>
                 <v-icon size="24">fa-plane-departure</v-icon>
               </v-btn>
             </div>
@@ -66,23 +45,13 @@
         <v-flex class="pa-3">
           <v-window v-model="CurrentWindow">
             <v-window-item>
-              <v-card
-                flat
-                class="pa-0"
-              >
+              <v-card flat class="pa-0">
                 <v-card-text class="pa-0">
-                  <v-layout
-                    align-center
-                    class="ma-0"
-                  >
+                  <v-layout align-center class="ma-0">
                     <h1 class="grey--text text--darken-2">Personal Info</h1>
                   </v-layout>
 
-                  <v-layout
-                    row
-                    wrap
-                    mx-4
-                  >
+                  <v-layout row wrap mx-4>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Name"
@@ -142,10 +111,7 @@
                     ></v-text-field>
                   </v-layout>
 
-                  <v-layout
-                    column
-                    mx-3
-                  >
+                  <v-layout column mx-3>
                     <v-flex xs12>
                       <v-textarea
                         name="Address"
@@ -183,23 +149,13 @@
             </v-window-item>
 
             <v-window-item>
-              <v-card
-                flat
-                class="pa-0"
-              >
+              <v-card flat class="pa-0">
                 <v-card-text class="pa-0">
-                  <v-layout
-                    align-center
-                    class="ma-0"
-                  >
+                  <v-layout align-center class="ma-0">
                     <h1 class="grey--text text--darken-2">Course Info</h1>
                   </v-layout>
 
-                  <v-layout
-                    row
-                    wrap
-                    mx-4
-                  >
+                  <v-layout row wrap mx-4>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Course"
@@ -233,6 +189,7 @@
                     <v-menu
                       class="mr-3"
                       v-model="showStartDate"
+                      :disabled="Client.ReadOnly"
                       :close-on-content-click="false"
                       lazy
                       transition="scale-transition"
@@ -277,27 +234,27 @@
                     ></v-text-field>
                   </v-layout>
 
-                  <v-layout
-                    align-center
-                    class="ma-0"
-                  >
-                    <h1 class="grey--text text--darken-2">Pathway Programs
-                    </h1>
-                    <v-btn
-                      flat
-                      icon
-                      color="indigo"
-                      small
-                      @click="addPathway"
-                    >
+                  <v-layout align-center class="ma-0">
+                    <h1 class="grey--text text--darken-2">Pathway Programs</h1>
+                    <v-btn flat icon color="indigo" small @click="addPathway">
                       <v-icon size="16">fa-plus</v-icon>
                     </v-btn>
                   </v-layout>
+                  <v-card
+                    v-if="Client.Pathways ? Client.Pathways.length == 0 : true"
+                    flat
+                    fab
+                    class="grey lighten-5 pa-0 ma-0 grey--text"
+                  >
+                    <v-card-text>
+                      Click + button above to add a pathway program...
+                    </v-card-text>
+                  </v-card>
                   <v-layout
                     row
                     wrap
                     mx-4
-                    v-for="(pp,i) in Client.Pathways"
+                    v-for="(pp, i) in Client.Pathways"
                     :key="i"
                   >
                     <v-text-field
@@ -315,30 +272,19 @@
                       :background-color="formColor"
                     ></v-text-field>
                   </v-layout>
-
                 </v-card-text>
                 <client-actions />
               </v-card>
             </v-window-item>
 
             <v-window-item>
-              <v-card
-                flat
-                class="pa-0"
-              >
+              <v-card flat class="pa-0">
                 <v-card-text class="pa-0">
-                  <v-layout
-                    align-center
-                    class="ma-0"
-                  >
+                  <v-layout align-center class="ma-0">
                     <h1 class="grey--text text--darken-2">Visa Info</h1>
                   </v-layout>
 
-                  <v-layout
-                    row
-                    wrap
-                    mx-4
-                  >
+                  <v-layout row wrap mx-4>
                     <v-combobox
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.VisaStatus"
@@ -350,6 +296,7 @@
                     <v-menu
                       class="mr-3"
                       v-model="showAppliedDate"
+                      :disabled="Client.ReadOnly"
                       :close-on-content-click="false"
                       lazy
                       transition="scale-transition"
@@ -375,6 +322,7 @@
                     <v-menu
                       class="mr-3"
                       v-model="showApprovedDate"
+                      :disabled="Client.ReadOnly"
                       :close-on-content-click="false"
                       lazy
                       transition="scale-transition"
@@ -400,6 +348,7 @@
                     <v-menu
                       class="mr-3"
                       v-model="showArrivalDate"
+                      :disabled="Client.ReadOnly"
                       :close-on-content-click="false"
                       lazy
                       transition="scale-transition"
@@ -429,34 +378,51 @@
             </v-window-item>
 
             <v-window-item>
-              <v-card
-                flat
-                class="pa-0"
-              >
+              <v-card flat class="pa-0">
                 <v-card-text class="pa-0">
-                  <v-layout
-                    align-center
-                    class="ma-0"
-                  >
+                  <v-layout align-center class="ma-0">
                     <h1 class="grey--text text--darken-2">Commission Info</h1>
+                    <v-btn
+                      flat
+                      icon
+                      color="indigo"
+                      small
+                      @click="addCommission"
+                    >
+                      <v-icon size="16">fa-plus</v-icon>
+                    </v-btn>
                   </v-layout>
-
+                  <v-card
+                    v-if="
+                      Client.Commissions ? Client.Commissions.length == 0 : true
+                    "
+                    flat
+                    fab
+                    class="grey lighten-5 pa-0 ma-0 grey--text"
+                  >
+                    <v-card-text>
+                      Click + button above to add a commission...
+                    </v-card-text>
+                  </v-card>
                   <v-layout
                     row
                     wrap
                     mx-4
+                    v-for="(c, i) in Client.Commissions"
+                    :key="i"
                   >
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
-                      v-model="Client.CommissionAmount"
-                      label="Ammount"
+                      v-model="c.Amount"
+                      label="Amount"
                       :readonly="Client.ReadOnly"
                       :background-color="formColor"
                     ></v-text-field>
 
                     <v-menu
                       class="mr-3"
-                      v-model="showCommissionDate"
+                      v-model="c.ShowPicker"
+                      :disabled="Client.ReadOnly"
                       :close-on-content-click="false"
                       lazy
                       transition="scale-transition"
@@ -466,16 +432,15 @@
                     >
                       <template v-slot:activator="{ on }">
                         <v-text-field
-                          v-model="Client.CommissionDate"
+                          v-model="c.Date"
                           label="Received Date"
-                          readonly
                           v-on="on"
                           :background-color="formColor"
                         ></v-text-field>
                       </template>
                       <v-date-picker
-                        v-model="Client.CommissionDate"
-                        @input="showCommissionDate = false"
+                        v-model="c.Date"
+                        @input="c.ShowPicker = false"
                       ></v-date-picker>
                     </v-menu>
                   </v-layout>
@@ -501,7 +466,6 @@ export default {
     showAppliedDate: false,
     showApprovedDate: false,
     showArrivalDate: false,
-    showCommissionDate: false,
     visaStatusList: [
       "Not Applied",
       "Docs Collected From Client",
@@ -521,6 +485,16 @@ export default {
         this.Client.Pathways = [];
       }
       this.Client.Pathways.push({ Name: "", Link: "" });
+    },
+    addCommission() {
+      if (!this.Client.Commissions) {
+        this.Client.Commissions = [];
+      }
+      this.Client.Commissions.push({
+        Amount: "",
+        Date: "",
+        ShowPicker: false
+      });
     }
   },
 

@@ -21,8 +21,7 @@ namespace Kiwilink.Models
         public string CourseFee { get; set; }
         public string CourseLink { get; set; }
         public Nullable<DateTime> CourseStartDate { get; set; }
-        public string CommissionAmount { get; set; }
-        public Nullable<DateTime> CommissionDate { get; set; }
+        public Commission[] Commissions { get; set; }
         public string Email1 { get; set; }
         public string Email2 { get; set; }
         public string Institute { get; set; }
