@@ -57,13 +57,13 @@ export default {
     saveClient() {
       if (this.Client.Pathways) {
         this.Client.Pathways = this.Client.Pathways.filter(
-          p => p.Name !== "" && p.Link !== ""
+          p => p.Name !== "" || p.Link !== ""
         );
       }
 
       if (this.Client.Commissions) {
         this.Client.Commissions = this.Client.Commissions.filter(
-          c => c.Ammount !== "" && c.Date !== ""
+          c => c.Ammount !== "" || c.Date !== ""
         );
       }
 
