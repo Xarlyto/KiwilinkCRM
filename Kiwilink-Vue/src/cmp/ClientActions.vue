@@ -7,7 +7,10 @@
       @click="Client.ReadOnly = !Client.ReadOnly"
       v-if="Client.ReadOnly"
     >
-      <v-icon size="20" class="mr-2">fa-edit</v-icon>
+      <v-icon
+        size="20"
+        class="mr-2"
+      >fa-edit</v-icon>
       edit
     </v-btn>
     <v-btn
@@ -18,7 +21,10 @@
       @click="saveClient"
       :loading="Client.Saving"
     >
-      <v-icon size="20" class="mr-2">fa-save</v-icon>
+      <v-icon
+        size="20"
+        class="mr-2"
+      >fa-save</v-icon>
       save
     </v-btn>
 
@@ -29,11 +35,22 @@
       v-if="ShowTaskAddBtn"
       @click="addTask"
     >
-      <v-icon class="mr-2" size="20">fa-calendar-plus</v-icon>
+      <v-icon
+        class="mr-2"
+        size="20"
+      >fa-calendar-plus</v-icon>
       new task
     </v-btn>
-    <v-btn small flat color="brown lighten-2" @click="closeClient">
-      <v-icon class="mr-2" size="20">fa-times-circle</v-icon>
+    <v-btn
+      small
+      flat
+      color="brown lighten-2"
+      @click="closeClient"
+    >
+      <v-icon
+        class="mr-2"
+        size="20"
+      >fa-times-circle</v-icon>
       close
     </v-btn>
 
@@ -63,7 +80,7 @@ export default {
 
       if (this.Client.Commissions) {
         this.Client.Commissions = this.Client.Commissions.filter(
-          c => c.Ammount !== "" || c.Date !== ""
+          c => c.Amount !== "" || c.Date !== ""
         );
       }
 
