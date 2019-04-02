@@ -281,68 +281,41 @@
                     align-center
                     class="ma-0"
                   >
-                    <h1 class="grey--text text--darken-2">Pathway Programs</h1>
+                    <h1 class="grey--text text--darken-2">Pathway Programs
+                    </h1>
+                    <v-btn
+                      flat
+                      icon
+                      color="indigo"
+                      small
+                      @click="addPathway"
+                    >
+                      <v-icon size="16">fa-plus</v-icon>
+                    </v-btn>
                   </v-layout>
                   <v-layout
                     row
                     wrap
                     mx-4
+                    v-for="(pp,i) in Client.Pathways"
+                    :key="i"
                   >
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
-                      v-model="Client.PathwayProgram1"
-                      label="Pathway Program 1"
+                      v-model="pp.Name"
+                      label="Program Name"
                       :readonly="Client.ReadOnly"
                       :background-color="formColor"
                     ></v-text-field>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
-                      v-model="Client.PathwayProgram1Link"
-                      label="Program 1 Link"
+                      v-model="pp.Link"
+                      label="Program Link"
                       :readonly="Client.ReadOnly"
                       :background-color="formColor"
                     ></v-text-field>
                   </v-layout>
-                  <v-layout
-                    row
-                    wrap
-                    mx-4
-                  >
-                    <v-text-field
-                      class="ma-0 pa-0 mt-3 mr-3"
-                      v-model="Client.PathwayProgram2"
-                      label="Pathway Program 2"
-                      :readonly="Client.ReadOnly"
-                      :background-color="formColor"
-                    ></v-text-field>
-                    <v-text-field
-                      class="ma-0 pa-0 mt-3 mr-3"
-                      v-model="Client.PathwayProgram2Link"
-                      label="Program 2 Link"
-                      :readonly="Client.ReadOnly"
-                      :background-color="formColor"
-                    ></v-text-field>
-                  </v-layout>
-                  <v-layout
-                    row
-                    wrap
-                    mx-4
-                  >
-                    <v-text-field
-                      class="ma-0 pa-0 mt-3 mr-3"
-                      v-model="Client.PathwayProgram3"
-                      label="Pathway Program 3"
-                      :readonly="Client.ReadOnly"
-                      :background-color="formColor"
-                    ></v-text-field>
-                    <v-text-field
-                      class="ma-0 pa-0 mt-3 mr-3"
-                      v-model="Client.PathwayProgram3Link"
-                      label="Program 3 Link"
-                      :readonly="Client.ReadOnly"
-                      :background-color="formColor"
-                    ></v-text-field>
-                  </v-layout>
+
                 </v-card-text>
                 <client-actions />
               </v-card>
@@ -541,6 +514,15 @@ export default {
   }),
 
   store: ["Client", "Lists", "CurrentWindow", "Employee"],
+
+  methods: {
+    addPathway() {
+      if (!this.Client.Pathways) {
+        this.Client.Pathways = [];
+      }
+      this.Client.Pathways.push({ Name: "", Link: "" });
+    }
+  },
 
   computed: {
     formColor() {

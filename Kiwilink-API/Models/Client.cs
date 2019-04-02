@@ -32,12 +32,7 @@ namespace Kiwilink.Models
         public string Mobile { get; set; }
         [Required] public string Name { get; set; }
         public string Passport { get; set; }
-        public string PathwayProgram1 { get; set; }
-        public string PathwayProgram1Link { get; set; }
-        public string PathwayProgram2 { get; set; }
-        public string PathwayProgram2Link { get; set; }
-        public string PathwayProgram3 { get; set; }
-        public string PathwayProgram3Link { get; set; }
+        public PathwayProgram[] Pathways { get; set; }
         [Required] public string Surname { get; set; }
         public Nullable<DateTime> VisaAppliedDate { get; set; }
         public Nullable<DateTime> VisaApprovedDate { get; set; }
