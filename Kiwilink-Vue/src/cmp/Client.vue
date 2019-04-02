@@ -1,11 +1,22 @@
 <template>
-  <v-card v-if="Object.keys(Client).length > 0" class="ma-1">
+  <v-card
+    v-if="Object.keys(Client).length > 0"
+    class="ma-1"
+  >
     <v-container>
       <v-layout class="pl-2">
-        <v-item-group v-model="CurrentWindow" class="grey lighten-4 rounded">
+        <v-item-group
+          v-model="CurrentWindow"
+          class="grey lighten-4 rounded"
+        >
           <v-item>
             <div slot-scope="{ active, toggle }">
-              <v-btn :input-value="active" icon @click="toggle" large>
+              <v-btn
+                :input-value="active"
+                icon
+                @click="toggle"
+                large
+              >
                 <v-icon size="28">fa-user-circle</v-icon>
               </v-btn>
             </div>
@@ -13,7 +24,12 @@
 
           <v-item>
             <div slot-scope="{ active, toggle }">
-              <v-btn :input-value="active" icon @click="toggle" large>
+              <v-btn
+                :input-value="active"
+                icon
+                @click="toggle"
+                large
+              >
                 <v-icon size="27">fa-graduation-cap</v-icon>
               </v-btn>
             </div>
@@ -21,7 +37,12 @@
 
           <v-item>
             <div slot-scope="{ active, toggle }">
-              <v-btn :input-value="active" icon @click="toggle" large>
+              <v-btn
+                :input-value="active"
+                icon
+                @click="toggle"
+                large
+              >
                 <v-icon size="24">fa-plane-departure</v-icon>
               </v-btn>
             </div>
@@ -45,13 +66,23 @@
         <v-flex class="pa-3">
           <v-window v-model="CurrentWindow">
             <v-window-item>
-              <v-card flat class="pa-0">
+              <v-card
+                flat
+                class="pa-0"
+              >
                 <v-card-text class="pa-0">
-                  <v-layout align-center class="ma-0">
+                  <v-layout
+                    align-center
+                    class="ma-0"
+                  >
                     <h1 class="grey--text text--darken-2">Personal Info</h1>
                   </v-layout>
 
-                  <v-layout row wrap mx-4>
+                  <v-layout
+                    row
+                    wrap
+                    mx-4
+                  >
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Name"
@@ -109,29 +140,41 @@
                       :readonly="Client.ReadOnly"
                       :background-color="formColor"
                     ></v-text-field>
-                    <v-textarea
-                      name="Address"
-                      label="Postal Address"
-                      v-model="Client.Address"
-                      class="ma-0 pa-0 mt-3 mr-3"
-                      :readonly="Client.ReadOnly"
-                      :background-color="formColor"
-                    ></v-textarea>
-                    <v-textarea
-                      name="Background"
-                      label="Background Info"
-                      v-model="Client.Background"
-                      class="ma-0 pa-0 mt-3 mr-3"
-                      :readonly="Client.ReadOnly"
-                      :background-color="formColor"
-                    ></v-textarea>
-                    <v-text-field
-                      class="ma-0 pa-0 mt-3 mr-3"
-                      v-model="Client.CV"
-                      label="CV Link"
-                      :readonly="Client.ReadOnly"
-                      :background-color="formColor"
-                    ></v-text-field>
+                  </v-layout>
+
+                  <v-layout
+                    column
+                    mx-3
+                  >
+                    <v-flex xs12>
+                      <v-textarea
+                        name="Address"
+                        label="Postal Address"
+                        v-model="Client.Address"
+                        class="ma-0 pa-0 mt-3 mr-3"
+                        :readonly="Client.ReadOnly"
+                        :background-color="formColor"
+                      ></v-textarea>
+                    </v-flex>
+                    <v-flex xs12>
+                      <v-textarea
+                        name="Background"
+                        label="Background Info"
+                        v-model="Client.Background"
+                        class="ma-0 pa-0 mt-3 mr-3"
+                        :readonly="Client.ReadOnly"
+                        :background-color="formColor"
+                      ></v-textarea>
+                    </v-flex>
+                    <v-flex xs12>
+                      <v-text-field
+                        class="ma-0 pa-0 mt-3 mr-3"
+                        v-model="Client.CV"
+                        label="CV Link"
+                        :readonly="Client.ReadOnly"
+                        :background-color="formColor"
+                      ></v-text-field>
+                    </v-flex>
                   </v-layout>
                 </v-card-text>
 
@@ -140,13 +183,23 @@
             </v-window-item>
 
             <v-window-item>
-              <v-card flat class="pa-0">
+              <v-card
+                flat
+                class="pa-0"
+              >
                 <v-card-text class="pa-0">
-                  <v-layout align-center class="ma-0">
+                  <v-layout
+                    align-center
+                    class="ma-0"
+                  >
                     <h1 class="grey--text text--darken-2">Course Info</h1>
                   </v-layout>
 
-                  <v-layout row wrap mx-4>
+                  <v-layout
+                    row
+                    wrap
+                    mx-4
+                  >
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.Course"
@@ -201,30 +254,6 @@
                         @input="showStartDate = false"
                       ></v-date-picker>
                     </v-menu>
-                    <v-menu
-                      class="mr-3"
-                      v-model="showIntakeDate"
-                      :close-on-content-click="false"
-                      lazy
-                      transition="scale-transition"
-                      offset-y
-                      full-width
-                      min-width="290px"
-                    >
-                      <template v-slot:activator="{ on }">
-                        <v-text-field
-                          v-model="Client.CourseIntakeDate"
-                          label="Intake Date"
-                          readonly
-                          v-on="on"
-                          :background-color="formColor"
-                        ></v-text-field>
-                      </template>
-                      <v-date-picker
-                        v-model="Client.CourseIntakeDate"
-                        @input="showIntakeDate = false"
-                      ></v-date-picker>
-                    </v-menu>
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.CourseDuration"
@@ -248,10 +277,17 @@
                     ></v-text-field>
                   </v-layout>
 
-                  <v-layout align-center class="ma-0">
+                  <v-layout
+                    align-center
+                    class="ma-0"
+                  >
                     <h1 class="grey--text text--darken-2">Pathway Programs</h1>
                   </v-layout>
-                  <v-layout row wrap mx-4>
+                  <v-layout
+                    row
+                    wrap
+                    mx-4
+                  >
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.PathwayProgram1"
@@ -267,7 +303,11 @@
                       :background-color="formColor"
                     ></v-text-field>
                   </v-layout>
-                  <v-layout row wrap mx-4>
+                  <v-layout
+                    row
+                    wrap
+                    mx-4
+                  >
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.PathwayProgram2"
@@ -283,7 +323,11 @@
                       :background-color="formColor"
                     ></v-text-field>
                   </v-layout>
-                  <v-layout row wrap mx-4>
+                  <v-layout
+                    row
+                    wrap
+                    mx-4
+                  >
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.PathwayProgram3"
@@ -305,13 +349,23 @@
             </v-window-item>
 
             <v-window-item>
-              <v-card flat class="pa-0">
+              <v-card
+                flat
+                class="pa-0"
+              >
                 <v-card-text class="pa-0">
-                  <v-layout align-center class="ma-0">
+                  <v-layout
+                    align-center
+                    class="ma-0"
+                  >
                     <h1 class="grey--text text--darken-2">Visa Info</h1>
                   </v-layout>
 
-                  <v-layout row wrap mx-4>
+                  <v-layout
+                    row
+                    wrap
+                    mx-4
+                  >
                     <v-combobox
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.VisaStatus"
@@ -402,13 +456,23 @@
             </v-window-item>
 
             <v-window-item>
-              <v-card flat class="pa-0">
+              <v-card
+                flat
+                class="pa-0"
+              >
                 <v-card-text class="pa-0">
-                  <v-layout align-center class="ma-0">
+                  <v-layout
+                    align-center
+                    class="ma-0"
+                  >
                     <h1 class="grey--text text--darken-2">Commission Info</h1>
                   </v-layout>
 
-                  <v-layout row wrap mx-4>
+                  <v-layout
+                    row
+                    wrap
+                    mx-4
+                  >
                     <v-text-field
                       class="ma-0 pa-0 mt-3 mr-3"
                       v-model="Client.CommissionAmount"
@@ -461,12 +525,19 @@ export default {
   components: { ClientActions },
   data: () => ({
     showStartDate: false,
-    showIntakeDate: false,
     showAppliedDate: false,
     showApprovedDate: false,
     showArrivalDate: false,
     showCommissionDate: false,
-    visaStatusList: ["Not Applied", "Applied", "Pending", "Approved"]
+    visaStatusList: [
+      "Not Applied",
+      "Docs Collected From Client",
+      "Docs Submitted To Institute",
+      "Offer Letter Issued",
+      "Visa Applied",
+      "Visa Pending",
+      "Visa Approved"
+    ]
   }),
 
   store: ["Client", "Lists", "CurrentWindow", "Employee"],

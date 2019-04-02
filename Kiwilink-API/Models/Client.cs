@@ -19,7 +19,6 @@ namespace Kiwilink.Models
         public string CourseCountry { get; set; }
         public string CourseDuration { get; set; }
         public string CourseFee { get; set; }
-        public Nullable<DateTime> CourseIntakeDate { get; set; }
         public string CourseLink { get; set; }
         public Nullable<DateTime> CourseStartDate { get; set; }
         public string CommissionAmount { get; set; }
