@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using Kiwilink.Data;
 using Kiwilink.Models;
+using MongoDAL;
 
 namespace Kiwilink.ViewModels
 {
@@ -13,7 +13,7 @@ namespace Kiwilink.ViewModels
         public void Load(string EmployeeName)
         {
             Teasers = (from c in DB.Collection<Client>()
-                       orderby c.LastEditedOn descending
+                       orderby c.ModifiedOn descending
                        select new vTeaser()
                        {
                            Id = c.Id,
@@ -25,7 +25,7 @@ namespace Kiwilink.ViewModels
 
             Tasks = (from t in DB.Collection<Task>()
                      where t.IsComplete == false && t.AssignedEmployeeName.Equals(EmployeeName)
-                     orderby t.LastEditedOn descending
+                     orderby t.ModifiedOn descending
                      select t).Take(100).ToArray();
 
             Lists.Load();

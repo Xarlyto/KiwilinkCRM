@@ -1,10 +1,8 @@
-﻿using MongoDB.Bson;
-
-namespace Kiwilink.ViewModels
+﻿namespace Kiwilink.ViewModels
 {
     public class vTeaser
     {
-        public ObjectId Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Mobile { get; set; }
         public string Course { get; set; }

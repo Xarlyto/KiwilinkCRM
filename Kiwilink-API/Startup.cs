@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
+using MongoDAL;
 
 namespace Kiwilink
 {
@@ -18,6 +19,7 @@ namespace Kiwilink
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMongoDAL("kiwilink");
             services.AddCors();
             services.AddMvc()
                 .AddJsonOptions(opt => opt.SerializerSettings.ContractResolver = new DefaultContractResolver())

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Kiwilink.Data;
 using Kiwilink.Models;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
@@ -59,7 +58,7 @@ namespace Kiwilink.Controllers
         public IActionResult CompleteTask(string id)
         {
             var task = new Task();
-            task.MarkComplete(new ObjectId(id));
+            task.MarkComplete(id);
             return Ok();
         }
 
@@ -87,7 +86,7 @@ namespace Kiwilink.Controllers
         public ActionResult<vTeaser[]> Search(string term, string type)
         {
 
-            var clients = from c in DB.Collection<Client>()
+            var clients = from c in MongoDAL.DB.Collection<Client>()
                           select c;
 
             if (term != "null")
@@ -121,7 +120,7 @@ namespace Kiwilink.Controllers
             }
 
             return (from c in clients
-                    orderby c.LastEditedOn descending
+                    orderby c.ModifiedOn descending
                     select new vTeaser()
                     {
                         Course = c.Course,

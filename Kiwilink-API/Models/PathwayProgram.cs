@@ -1,5 +1,4 @@
-﻿
-namespace Kiwilink.Models
+﻿namespace Kiwilink.Models
 {
     public class PathwayProgram
     {

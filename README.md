@@ -16,7 +16,7 @@ A simple **C**ustomer **R**elationship **M**anagement web app for an `Education 
 
 *Database*
 1. install mongodb [msi installer is the easiest to get things going if running windows].
-2. modify the `Kiwilink-API/Data/mongod.cfg` file to specify your database and log folder.
+2. modify the `Kiwilink-API/Mongo/mongod.cfg` file to specify your database and log folder.
 3. copy the above file to your mongodb `bin` folder and replace the existing one.
 4. restart the `mongod` service. [or if not running as a service just run with the above config].
 

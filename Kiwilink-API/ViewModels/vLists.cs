@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Kiwilink.Data;
 using Kiwilink.Models;
+using MongoDAL;
 
 namespace Kiwilink.ViewModels
 {

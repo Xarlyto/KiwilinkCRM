@@ -1,15 +1,12 @@
 ﻿using System;
-using MongoDB.Bson;
-using Kiwilink.Data;
 using System.Linq;
-using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using MongoDAL;
 
 namespace Kiwilink.Models
 {
-    [BsonIgnoreExtraElements]
-    public class Client : Base
+    public class Client : MongoEntity
     {
         public string Address { get; set; }
         public Nullable<DateTime> ArrivalDate { get; set; }
@@ -29,18 +26,24 @@ namespace Kiwilink.Models
         public string LeadSource { get; set; }
         public string MinIELTS { get; set; }
         public string Mobile { get; set; }
-        [Required] public string Name { get; set; }
+        [Required]
+        public string Name { get; set; }
         public string Passport { get; set; }
         public PathwayProgram[] Pathways { get; set; }
-        [Required] public string Surname { get; set; }
+        [Required]
+        public string Surname { get; set; }
         public Nullable<DateTime> VisaAppliedDate { get; set; }
         public Nullable<DateTime> VisaApprovedDate { get; set; }
         public string VisaStatus { get; set; }
 
-        [BsonIgnore] public bool Saving { get; set; }
-        [BsonIgnore] public bool ReadOnly { get; set; } = true;
-        [BsonIgnore] public bool DeleteEnable { get; set; } = false;
-        [BsonIgnore] public Task[] TaskList { get; set; }
+        [MongoIgnore]
+        public bool Saving { get; set; }
+        [MongoIgnore]
+        public bool ReadOnly { get; set; } = true;
+        [MongoIgnore]
+        public bool DeleteEnable { get; set; } = false;
+        [MongoIgnore]
+        public Task[] TaskList { get; set; }
 
         public void Save()
         {
@@ -108,10 +111,8 @@ namespace Kiwilink.Models
 
         public Client Load(string id, string employeeName, bool all)
         {
-            var cid = new ObjectId(id);
-
             var cl = (from c in DB.Collection<Client>()
-                      where c.Id.Equals(cid)
+                      where c.Id.Equals(id)
                       select c).Single();
 
             cl.TaskList = new Task().FetchTasks(employeeName, all, id);
@@ -121,9 +122,8 @@ namespace Kiwilink.Models
 
         public void Delete(string id)
         {
-            var oid = new ObjectId(id);
-            DB.DeleteMany<Task>(t => t.ClientId.Equals(oid));
-            DB.Delete<Client>(oid);
+            DB.DeleteMany<Task>(t => t.ClientId.Equals(id));
+            DB.Delete<Client>(id);
         }
     }
 }
