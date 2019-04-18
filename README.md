@@ -4,7 +4,7 @@ A simple **C**ustomer **R**elationship **M**anagement web app for an `Education 
 **Tech Stack**
 - Frontend: Vuetify + VueJS + VueStash [for state management, no Vuex here]
 - API Server: ASP.Net Core Web API [no ASP Identity or authentication but simple clear text password checking/storage]
-- Data Access: MongoDB using C# LINQ queries [with a generic repository]
+- Data Access: MongoDB with MongoDAL [using C# LINQ queries]
 
 **Steps to get running**
 
