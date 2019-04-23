@@ -3,7 +3,7 @@
     <v-card v-if="Teasers.length == 0 && !Loading" class="pa-3 grey--text">
       No clients found...
     </v-card>
-    <v-card v-for="t in Teasers" :key="t.Id" class="ma-1 pa-3">
+    <v-card v-for="t in Teasers" :key="t.ID" class="ma-1 pa-3">
       <div class="row">
         <v-icon small>fa-user-circle</v-icon>
         <span>{{ t.Name }}</span>
@@ -38,7 +38,7 @@
           flat
           color="red lighten-2"
           v-if="Employee.IsAdmin"
-          @click="deleteClient(t.Id)"
+          @click="deleteClient(t.ID)"
         >
           <v-icon size="20">fa-trash-alt</v-icon>
         </v-btn>

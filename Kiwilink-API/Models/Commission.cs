@@ -7,7 +7,7 @@ namespace Kiwilink.Models
     {
         public string Amount { get; set; }
         public Nullable<DateTime> Date { get; set; }
-        [MongoIgnore]
+        [Ignore]
         public bool ShowPicker { get; set; }
     }
 }

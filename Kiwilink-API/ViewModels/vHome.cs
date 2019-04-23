@@ -16,7 +16,7 @@ namespace Kiwilink.ViewModels
                        orderby c.ModifiedOn descending
                        select new vTeaser()
                        {
-                           Id = c.Id,
+                           ID = c.ID,
                            Name = c.Name + " " + c.Surname,
                            Mobile = c.Mobile,
                            Course = c.Course,

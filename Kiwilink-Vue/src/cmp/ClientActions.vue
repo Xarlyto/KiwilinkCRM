@@ -7,10 +7,7 @@
       @click="Client.ReadOnly = !Client.ReadOnly"
       v-if="Client.ReadOnly"
     >
-      <v-icon
-        size="20"
-        class="mr-2"
-      >fa-edit</v-icon>
+      <v-icon size="20" class="mr-2">fa-edit</v-icon>
       edit
     </v-btn>
     <v-btn
@@ -21,10 +18,7 @@
       @click="saveClient"
       :loading="Client.Saving"
     >
-      <v-icon
-        size="20"
-        class="mr-2"
-      >fa-save</v-icon>
+      <v-icon size="20" class="mr-2">fa-save</v-icon>
       save
     </v-btn>
 
@@ -35,22 +29,11 @@
       v-if="ShowTaskAddBtn"
       @click="addTask"
     >
-      <v-icon
-        class="mr-2"
-        size="20"
-      >fa-calendar-plus</v-icon>
+      <v-icon class="mr-2" size="20">fa-calendar-plus</v-icon>
       new task
     </v-btn>
-    <v-btn
-      small
-      flat
-      color="brown lighten-2"
-      @click="closeClient"
-    >
-      <v-icon
-        class="mr-2"
-        size="20"
-      >fa-times-circle</v-icon>
+    <v-btn small flat color="brown lighten-2" @click="closeClient">
+      <v-icon class="mr-2" size="20">fa-times-circle</v-icon>
       close
     </v-btn>
 
@@ -93,14 +76,14 @@ export default {
     deleteClient() {
       this.$confirm("Are you sure you want to delete?").then(yes => {
         if (yes) {
-          this.$store.DeleteClient(this.Client.Id);
+          this.$store.DeleteClient(this.Client.ID);
         }
       });
     },
     addTask() {
       this.$store.OpenTask({
-        Id: "",
-        ClientId: this.Client.Id,
+        ID: "",
+        Client: { ID: this.Client.ID },
         ClientName: this.Client.Name + " " + this.Client.Surname
       });
     }

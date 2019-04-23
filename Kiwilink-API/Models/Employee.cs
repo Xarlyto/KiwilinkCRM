@@ -3,16 +3,16 @@ using MongoDAL;
 
 namespace Kiwilink.Models
 {
-    public class Employee : MongoEntity
+    public class Employee : Entity
     {
         public string Name { get; set; }
         [JsonIgnore]
         public string Password { get; set; }
         public bool IsAdmin { get; set; }
 
-        public void Save()
+        public void SaveChanges()
         {
-            DB.Save<Employee>(this);
+            this.Save();
         }
     }
 }

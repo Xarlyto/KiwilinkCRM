@@ -73,12 +73,12 @@ export default {
       axios
         .post(this.API + "client/save", client)
         .then(res => {
-          this.Client.Id = res.data;
+          this.Client.ID = res.data;
           this.ShowTaskAddBtn = true;
-          var teaser = this.Teasers.find(t => t.Id == this.Client.Id);
+          var teaser = this.Teasers.find(t => t.ID == this.Client.ID);
 
           if (!teaser) {
-            teaser = { Id: this.Client.Id };
+            teaser = { ID: this.Client.ID };
           }
 
           teaser.Name = this.Client.Name + " " + this.Client.Surname;
@@ -86,7 +86,7 @@ export default {
           teaser.Course = this.Client.Course;
           teaser.Institute = this.Client.Institute;
 
-          if (client.Id != "")
+          if (client.ID != "")
             this.Teasers.splice(this.Teasers.indexOf(teaser), 1);
           this.Teasers.unshift(teaser);
 
@@ -119,11 +119,11 @@ export default {
       axios
         .post(this.API + "task/save", this.Task)
         .then(res => {
-          var isNew = this.Task.Id == "";
-          this.Task.Id = res.data;
+          var isNew = this.Task.ID == "";
+          this.Task.ID = res.data;
 
           if (!isNew) {
-            var mTask = this.Tasks.find(t => t.Id == this.Task.Id);
+            var mTask = this.Tasks.find(t => t.ID == this.Task.ID);
             if (mTask) mTask = this.Task;
           } else {
             this.Tasks.unshift(this.Task);
@@ -143,7 +143,7 @@ export default {
     axios
       .get(`${this.API}task/complete/${id}`)
       .then(() => {
-        var t = this.Tasks.find(t => t.Id == id);
+        var t = this.Tasks.find(t => t.ID == id);
         this.Tasks.splice(this.Tasks.indexOf(t), 1);
       })
       .catch(err => {
@@ -153,7 +153,7 @@ export default {
 
   NewClient() {
     this.Client = {
-      Id: "",
+      ID: "",
       ReadOnly: false,
       DeleteEnable: false,
       Pathways: [],
@@ -170,7 +170,7 @@ export default {
 
     axios
       .get(
-        `${this.API}client/load/${cl.Id}/${employee}/${
+        `${this.API}client/load/${cl.ID}/${employee}/${
           this.TaskFilters.showAll
         }`
       )
@@ -227,14 +227,11 @@ export default {
   FetchTasks() {
     this.TaskFilters.FetchingTasks = true;
     var employee = this.TaskFilters.onlyMe ? this.Employee.Name : "null";
-    var clientID =
-      Object.keys(this.Client).length > 0 ? this.Client.Id : "null";
+    var clid = Object.keys(this.Client).length > 0 ? this.Client.ID : "null";
 
     axios
       .get(
-        `${this.API}tasks/fetch/${employee}/${
-          this.TaskFilters.showAll
-        }/${clientID}`
+        `${this.API}tasks/fetch/${employee}/${this.TaskFilters.showAll}/${clid}`
       )
       .then(res => {
         this.Tasks = res.data;
@@ -265,7 +262,7 @@ export default {
     axios
       .get(`${this.API}client/delete/${cid}`)
       .then(() => {
-        var teaser = this.Teasers.find(t => t.Id == cid);
+        var teaser = this.Teasers.find(t => t.ID == cid);
         this.Teasers.splice(this.Teasers.indexOf(teaser), 1);
         if (Object.keys(this.Client).length > 0) this.CloseClient();
         this.FetchTasks();

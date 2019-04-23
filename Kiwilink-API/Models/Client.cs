@@ -6,7 +6,7 @@ using MongoDAL;
 
 namespace Kiwilink.Models
 {
-    public class Client : MongoEntity
+    public class Client : Entity
     {
         public string Address { get; set; }
         public Nullable<DateTime> ArrivalDate { get; set; }
@@ -36,16 +36,16 @@ namespace Kiwilink.Models
         public Nullable<DateTime> VisaApprovedDate { get; set; }
         public string VisaStatus { get; set; }
 
-        [MongoIgnore]
+        [Ignore]
         public bool Saving { get; set; }
-        [MongoIgnore]
+        [Ignore]
         public bool ReadOnly { get; set; } = true;
-        [MongoIgnore]
+        [Ignore]
         public bool DeleteEnable { get; set; } = false;
-        [MongoIgnore]
+        [Ignore]
         public Task[] TaskList { get; set; }
 
-        public void Save()
+        public void SaveChanges()
         {
             if (CourseCountry != null)
             {
@@ -63,7 +63,7 @@ namespace Kiwilink.Models
                     countryList.Values.Add(CourseCountry.TitleCaseMe());
                 }
 
-                DB.Save<DropList>(countryList);
+                countryList.Save();
             }
 
 
@@ -83,7 +83,7 @@ namespace Kiwilink.Models
                     leadSourceList.Values.Add(LeadSource.TitleCaseMe());
                 }
 
-                DB.Save<DropList>(leadSourceList);
+                leadSourceList.Save();
             }
 
 
@@ -103,16 +103,16 @@ namespace Kiwilink.Models
                     instituteList.Values.Add(Institute.TitleCaseMe());
                 }
 
-                DB.Save<DropList>(instituteList);
+                instituteList.Save();
             }
 
-            DB.Save<Client>(this);
+            this.Save();
         }
 
         public Client Load(string id, string employeeName, bool all)
         {
             var cl = (from c in DB.Collection<Client>()
-                      where c.Id.Equals(id)
+                      where c.ID.Equals(id)
                       select c).Single();
 
             cl.TaskList = new Task().FetchTasks(employeeName, all, id);
@@ -122,7 +122,7 @@ namespace Kiwilink.Models
 
         public void Delete(string id)
         {
-            DB.DeleteMany<Task>(t => t.ClientId.Equals(id));
+            DB.Delete<Task>(t => t.Client.ID.Equals(id));
             DB.Delete<Client>(id);
         }
     }

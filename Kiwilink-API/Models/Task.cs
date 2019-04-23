@@ -3,33 +3,27 @@ using MongoDAL;
 
 namespace Kiwilink.Models
 {
-    public class Task : MongoEntity
+    public class Task : Entity
     {
-        [MongoRef]
-        public string ClientId { get; set; }
+        public One<Client> Client { get; set; }
 
         public string ClientName { get; set; }
         public string Content { get; set; }
         public bool IsComplete { get; set; } = false;
         public string AssignedEmployeeName { get; set; }
 
-        [MongoIgnore]
+        [Ignore]
         public bool Saving { get; set; }
-        [MongoIgnore]
+        [Ignore]
         public bool Completing { get; set; }
-        [MongoIgnore]
+        [Ignore]
         public bool OpeningClient { get; set; }
-
-        public void Save()
-        {
-            DB.Save<Task>(this);
-        }
 
         public void MarkComplete(string Id)
         {
-            var task = DB.Collection<Task>().Single(t => t.Id.Equals(Id));
+            var task = DB.Collection<Task>().Single(t => t.ID.Equals(Id));
             task.IsComplete = true;
-            DB.Save<Task>(task);
+            task.Save();
         }
 
         public Task[] FetchTasks(string employeeName, bool all, string cid)
@@ -46,9 +40,8 @@ namespace Kiwilink.Models
 
             if (cid != "null")
             {
-
                 tasks = from t in tasks
-                        where t.ClientId.Equals(cid)
+                        where t.Client.ID.Equals(cid)
                         select t;
             }
 
@@ -59,7 +52,7 @@ namespace Kiwilink.Models
                         select t;
             }
 
-            return tasks.OrderByDescending(t=>t.ModifiedOn).Take(100).ToArray();
+            return tasks.OrderByDescending(t => t.ModifiedOn).Take(100).ToArray();
         }
     }
 }

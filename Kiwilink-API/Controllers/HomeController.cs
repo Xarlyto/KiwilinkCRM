@@ -29,8 +29,8 @@ namespace Kiwilink.Controllers
         [HttpPost("api/client/save")]
         public ActionResult<string> SaveClient(Client client)
         {
-            client.Save();
-            return client.Id.ToString();
+            client.SaveChanges();
+            return client.ID.ToString();
         }
 
         [HttpGet("api/client/delete/{cid}")]
@@ -48,10 +48,9 @@ namespace Kiwilink.Controllers
         }
 
         [HttpPost("api/task/save")]
-        public ActionResult<string> SaveTask(Task task)
+        public ActionResult<string> SaveTask(vTask vm)
         {
-            task.Save();
-            return task.Id.ToString();
+            return vm.SaveChanges();
         }
 
         [HttpGet("api/task/complete/{id}")]
@@ -66,7 +65,7 @@ namespace Kiwilink.Controllers
         public ActionResult<Employee> AddEmployee(string name, string pass)
         {
             var emp = new Employee() { Name = name.TitleCaseMe(), Password = pass };
-            emp.Save();
+            emp.SaveChanges();
             return emp;
         }
 
@@ -124,7 +123,7 @@ namespace Kiwilink.Controllers
                     select new vTeaser()
                     {
                         Course = c.Course,
-                        Id = c.Id,
+                        ID = c.ID,
                         Institute = c.Institute,
                         Mobile = c.Mobile,
                         Name = c.Name + " " + c.Surname

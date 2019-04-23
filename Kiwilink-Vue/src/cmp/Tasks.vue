@@ -28,7 +28,7 @@
         <span class="grey--text darken-1">No tasks to display...</span>
       </v-card-text>
     </v-card>
-    <v-card v-for="t in Tasks" :key="t.Id" class="mb-2">
+    <v-card v-for="t in Tasks" :key="t.ID" class="mb-2">
       <v-card-title
         :class="`pa-2 ${t.IsComplete ? 'green' : 'blue'} darken-3 white--text`"
       >
@@ -138,11 +138,11 @@ export default {
     },
     completeTask(task) {
       task.Completing = true;
-      this.$store.CompleteTask(task.Id);
+      this.$store.CompleteTask(task.ID);
     },
     openClient(task) {
       task.OpeningClient = true;
-      this.$store.OpenClient({ Id: task.ClientId }, task);
+      this.$store.OpenClient({ ID: task.Client.ID }, task);
     },
     fetchTasks() {
       this.$store.FetchTasks();
