@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Kiwilink.Models;
-using MongoDAL;
+using MongoDB.Entities;
 
 namespace Kiwilink.ViewModels
 {

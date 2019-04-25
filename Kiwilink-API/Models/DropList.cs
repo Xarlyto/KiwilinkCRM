@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MongoDAL;
+using MongoDB.Entities;
 
 namespace Kiwilink.Models
 {

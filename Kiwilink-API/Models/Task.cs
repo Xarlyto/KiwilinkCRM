@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using MongoDAL;
+using MongoDB.Entities;
 
 namespace Kiwilink.Models
 {

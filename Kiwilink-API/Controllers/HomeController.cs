@@ -2,7 +2,6 @@
 using System.Linq;
 using Kiwilink.Models;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 using Kiwilink.ViewModels;
 using MongoDB.Driver.Linq;
 
@@ -85,7 +84,7 @@ namespace Kiwilink.Controllers
         public ActionResult<vTeaser[]> Search(string term, string type)
         {
 
-            var clients = from c in MongoDAL.DB.Collection<Client>()
+            var clients = from c in MongoDB.Entities.DB.Collection<Client>()
                           select c;
 
             if (term != "null")

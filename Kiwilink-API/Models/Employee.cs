@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using MongoDAL;
+using MongoDB.Entities;
 
 namespace Kiwilink.Models
 {

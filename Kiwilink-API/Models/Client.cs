@@ -2,7 +2,7 @@
 using System.Linq;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using MongoDAL;
+using MongoDB.Entities;
 
 namespace Kiwilink.Models
 {
