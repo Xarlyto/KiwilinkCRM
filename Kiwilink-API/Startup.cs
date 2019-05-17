@@ -24,7 +24,7 @@ namespace Kiwilink
             services.AddMvc()
                 .AddJsonOptions(opt => opt.SerializerSettings.ContractResolver = new DefaultContractResolver())
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .ConfigureApiBehaviorOptions(opt => opt.SuppressModelStateInvalidFilter = true); //set to true to disable automatic model error response 400
+                .ConfigureApiBehaviorOptions(opt => opt.SuppressModelStateInvalidFilter = false); //set to true to disable automatic model error response 400
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
