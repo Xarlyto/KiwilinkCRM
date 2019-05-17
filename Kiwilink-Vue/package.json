@@ -13,22 +13,22 @@
     "vue": "^2.6.10",
     "vue-cookie": "^1.1.4",
     "vue-stash": "^2.0.1-beta",
-    "vuetify": "^1.5.7",
-    "vuetify-confirm": "^0.2.4"
+    "vuetify": "^1.5.14",
+    "vuetify-confirm": "^0.2.6"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.5.1",
-    "@vue/cli-plugin-eslint": "^3.5.1",
-    "@vue/cli-service": "^3.5.1",
+    "@vue/cli-plugin-babel": "^3.7.0",
+    "@vue/cli-plugin-eslint": "^3.7.0",
+    "@vue/cli-service": "^3.7.0",
     "@vue/eslint-config-prettier": "^4.0.1",
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.15.3",
+    "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
-    "vue-cli-plugin-vuetify": "^0.4.6",
+    "vue-cli-plugin-vuetify": "^0.5.0",
     "vue-template-compiler": "^2.6.10",
-    "vuetify-loader": "^1.0.5"
+    "vuetify-loader": "^1.2.2"
   },
   "eslintConfig": {
     "root": true,
