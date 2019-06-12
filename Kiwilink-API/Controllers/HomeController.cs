@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Kiwilink.ViewModels;
 using MongoDB.Driver.Linq;
 using MongoDB.Entities;
+using MongoDB.Driver;
+using System.Collections.Generic;
 
 namespace Kiwilink.Controllers
 {
@@ -82,49 +84,49 @@ namespace Kiwilink.Controllers
         }
 
         [HttpGet("api/search/{term}/{type}")]
-        public ActionResult<vTeaser[]> Search(string term, string type)
+        public ActionResult<List<vTeaser>> Search(string term, string type)
         {
 
-            var clients = from c in DB.Queryable<Client>()
-                          select c;
+            var clients = DB.Fluent<Client>();
 
             if (term != "null")
             {
                 switch (type)
                 {
                     case "Name":
-                        clients = clients.Where(c => c.Name.ToLower().Contains(term.ToLower()));
+                        clients = DB.SearchTextFluent<Client>(term);
                         break;
                     case "Passport":
-                        clients = clients.Where(c => c.Passport.ToLower().Contains(term.ToLower()));
+                        clients = clients.Match(c => c.Passport.ToLower().Contains(term.ToLower()));
                         break;
                     case "Mobile":
-                        clients = clients.Where(c => c.Mobile.ToLower().Contains(term.ToLower()));
+                        clients = clients.Match(c => c.Mobile.ToLower().Contains(term.ToLower()));
                         break;
                     case "Country":
-                        clients = clients.Where(c => c.CourseCountry.ToLower().Contains(term.ToLower()));
+                        clients = clients.Match(c => c.CourseCountry.ToLower().Contains(term.ToLower()));
                         break;
                     case "Institute":
-                        clients = clients.Where(c => c.Institute.ToLower().Contains(term.ToLower()));
+                        clients = clients.Match(c => c.Institute.ToLower().Contains(term.ToLower()));
                         break;
                     case "Course":
-                        clients = clients.Where(c => c.Course.ToLower().Contains(term.ToLower()));
+                        clients = clients.Match(c => c.Course.ToLower().Contains(term.ToLower()));
                         break;
                     default:
                         break;
                 }
             }
 
-            return (from c in clients
-                    orderby c.ModifiedOn descending
-                    select new vTeaser()
+            return clients
+                    .SortByDescending(c => c.ModifiedOn)
+                    .Limit(100)
+                    .Project(c => new vTeaser
                     {
                         Course = c.Course,
                         ID = c.ID,
                         Institute = c.Institute,
                         Mobile = c.Mobile,
                         Name = c.Name + " " + c.Surname
-                    }).Take(100).ToArray();
+                    }).ToList();
         }
     }
 
