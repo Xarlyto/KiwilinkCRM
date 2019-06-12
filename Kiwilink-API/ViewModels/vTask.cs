@@ -17,7 +17,7 @@ namespace Kiwilink.ViewModels
                 Content = this.Content,
                 IsComplete = this.IsComplete,
                 AssignedEmployeeName = this.AssignedEmployeeName,
-                Client = this.Client.Collection()
+                Client = this.Client.Queryable()
                                     .Where(c => c.ID == this.Client.ID)
                                     .Single()
                                     .ToReference()

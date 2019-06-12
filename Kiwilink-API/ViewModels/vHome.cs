@@ -12,7 +12,7 @@ namespace Kiwilink.ViewModels
 
         public void Load(string EmployeeName)
         {
-            Teasers = (from c in DB.Collection<Client>()
+            Teasers = (from c in DB.Queryable<Client>()
                        orderby c.ModifiedOn descending
                        select new vTeaser()
                        {
@@ -23,7 +23,7 @@ namespace Kiwilink.ViewModels
                            Institute = c.Institute
                        }).Take(100).ToArray();
 
-            Tasks = (from t in DB.Collection<Task>()
+            Tasks = (from t in DB.Queryable<Task>()
                      where t.IsComplete == false && t.AssignedEmployeeName.Equals(EmployeeName)
                      orderby t.ModifiedOn descending
                      select t).Take(100).ToArray();

@@ -16,7 +16,7 @@ namespace Kiwilink.ViewModels
         {
             try
             {
-                LeadSources = (from l in DB.Collection<DropList>()
+                LeadSources = (from l in DB.Queryable<DropList>()
                                where l.Name.Equals("LeadSources")
                                select l).SingleOrDefault().Values.OrderBy(v=>v).ToArray();
             }
@@ -27,7 +27,7 @@ namespace Kiwilink.ViewModels
 
             try
             {
-                CourseCountries = (from l in DB.Collection<DropList>()
+                CourseCountries = (from l in DB.Queryable<DropList>()
                                    where l.Name.Equals("CourseCountries")
                                    select l).SingleOrDefault().Values.OrderBy(v => v).ToArray();
 
@@ -41,7 +41,7 @@ namespace Kiwilink.ViewModels
 
             try
             {
-                Institutes = (from l in DB.Collection<DropList>()
+                Institutes = (from l in DB.Queryable<DropList>()
                               where l.Name.Equals("Institutes")
                               select l).SingleOrDefault().Values.OrderBy(v => v).ToArray();
             }
@@ -51,7 +51,7 @@ namespace Kiwilink.ViewModels
                 Institutes = new string[0];
             }
 
-            Employees = (from e in DB.Collection<Employee>()
+            Employees = (from e in DB.Queryable<Employee>()
                          orderby e.Name ascending
                          select e.Name).ToArray();
         }

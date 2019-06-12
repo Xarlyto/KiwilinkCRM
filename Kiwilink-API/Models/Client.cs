@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
 using MongoDB.Entities;
 
 namespace Kiwilink.Models
@@ -9,7 +7,7 @@ namespace Kiwilink.Models
     public class Client : Entity
     {
         public string Address { get; set; }
-        public Nullable<DateTime> ArrivalDate { get; set; }
+        public DateTime? ArrivalDate { get; set; }
         public string Background { get; set; }
         public string CV { get; set; }
         public string Course { get; set; }
@@ -17,7 +15,7 @@ namespace Kiwilink.Models
         public string CourseDuration { get; set; }
         public string CourseFee { get; set; }
         public string CourseLink { get; set; }
-        public Nullable<DateTime> CourseStartDate { get; set; }
+        public DateTime? CourseStartDate { get; set; }
         public Commission[] Commissions { get; set; }
         public string Email1 { get; set; }
         public string Email2 { get; set; }
@@ -26,14 +24,12 @@ namespace Kiwilink.Models
         public string LeadSource { get; set; }
         public string MinIELTS { get; set; }
         public string Mobile { get; set; }
-        [Required]
         public string Name { get; set; }
         public string Passport { get; set; }
         public PathwayProgram[] Pathways { get; set; }
-        [Required]
         public string Surname { get; set; }
-        public Nullable<DateTime> VisaAppliedDate { get; set; }
-        public Nullable<DateTime> VisaApprovedDate { get; set; }
+        public DateTime? VisaAppliedDate { get; set; }
+        public DateTime? VisaApprovedDate { get; set; }
         public string VisaStatus { get; set; }
 
         [Ignore]
@@ -49,7 +45,7 @@ namespace Kiwilink.Models
         {
             if (CourseCountry != null)
             {
-                var countryList = (from l in DB.Collection<DropList>()
+                var countryList = (from l in DB.Queryable<DropList>()
                                    where l.Name.Equals("CourseCountries")
                                    select l).SingleOrDefault();
 
@@ -69,7 +65,7 @@ namespace Kiwilink.Models
 
             if (LeadSource != null)
             {
-                var leadSourceList = (from l in DB.Collection<DropList>()
+                var leadSourceList = (from l in DB.Queryable<DropList>()
                                       where l.Name.Equals("LeadSources")
                                       select l).SingleOrDefault();
 
@@ -89,7 +85,7 @@ namespace Kiwilink.Models
 
             if (Institute != null)
             {
-                var instituteList = (from l in DB.Collection<DropList>()
+                var instituteList = (from l in DB.Queryable<DropList>()
                                      where l.Name.Equals("Institutes")
                                      select l).SingleOrDefault();
 
@@ -111,7 +107,7 @@ namespace Kiwilink.Models
 
         public Client Load(string id, string employeeName, bool all)
         {
-            var cl = (from c in DB.Collection<Client>()
+            var cl = (from c in DB.Queryable<Client>()
                       where c.ID.Equals(id)
                       select c).Single();
 

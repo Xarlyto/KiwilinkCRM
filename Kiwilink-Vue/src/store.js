@@ -101,7 +101,7 @@ export default {
               err.response.data.title ==
               "One or more validation errors occurred."
             ) {
-              alert("Cannot save client info without first and last names!!!");
+              alert("An error occured while saving the client. Please retry!");
             }
             this.Client.Saving = false;
           } else {
@@ -171,7 +171,7 @@ export default {
     axios
       .get(
         `${this.API}client/load/${cl.ID}/${employee}/${
-          this.TaskFilters.showAll
+        this.TaskFilters.showAll
         }`
       )
       .then(res => {

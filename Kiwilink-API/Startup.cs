@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 using MongoDB.Entities;
+using Kiwilink.Models;
 
 namespace Kiwilink
 {
@@ -43,6 +44,13 @@ namespace Kiwilink
             app.UseMvc();
             app.UseDefaultFiles();
             app.UseStaticFiles();
+
+            DefineIndexes();
+        }
+
+        private void DefineIndexes()
+        {
+            
         }
     }
 }

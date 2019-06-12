@@ -21,14 +21,14 @@ namespace Kiwilink.Models
 
         public void MarkComplete(string Id)
         {
-            var task = DB.Collection<Task>().Single(t => t.ID.Equals(Id));
+            var task = DB.Queryable<Task>().Single(t => t.ID.Equals(Id));
             task.IsComplete = true;
             task.Save();
         }
 
         public Task[] FetchTasks(string employeeName, bool all, string cid)
         {
-            var tasks = from t in DB.Collection<Task>()
+            var tasks = from t in DB.Queryable<Task>()
                         select t;
 
             if (employeeName != "null")

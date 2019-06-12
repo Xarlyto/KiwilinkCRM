@@ -12,7 +12,7 @@ namespace Kiwilink.ViewModels
 
         public Employee Authenticate()
         {
-            return DB.Collection<Employee>().SingleOrDefault(e => e.Name.Equals(Username) && e.Password.Equals(Password));
+            return DB.Queryable<Employee>().SingleOrDefault(e => e.Name.Equals(Username) && e.Password.Equals(Password));
         }
     }
 }
