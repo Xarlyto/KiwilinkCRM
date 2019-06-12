@@ -171,7 +171,7 @@ export default {
     axios
       .get(
         `${this.API}client/load/${cl.ID}/${employee}/${
-        this.TaskFilters.showAll
+          this.TaskFilters.showAll
         }`
       )
       .then(res => {
