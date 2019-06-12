@@ -1,6 +1,9 @@
 <template>
   <v-container class="mt-0 py-0">
-    <v-layout row wrap>
+    <v-layout
+      row
+      wrap
+    >
       <v-flex sm4>
         <v-select
           dense
@@ -27,7 +30,6 @@ export default {
   data: () => ({
     SearchByList: [
       "Name",
-      "Surname",
       "Passport",
       "Mobile",
       "Country",

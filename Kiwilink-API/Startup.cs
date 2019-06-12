@@ -50,7 +50,10 @@ namespace Kiwilink
 
         private void DefineIndexes()
         {
-            
+            DB.Index<Client>()
+              .Key(c => c.Name, KeyType.Text)
+              .Key(c => c.Surname, KeyType.Text)
+              .Create();
         }
     }
 }

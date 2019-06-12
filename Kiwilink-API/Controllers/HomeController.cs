@@ -95,9 +95,6 @@ namespace Kiwilink.Controllers
                     case "Name":
                         clients = clients.Where(c => c.Name.ToLower().Contains(term.ToLower()));
                         break;
-                    case "Surname":
-                        clients = clients.Where(c => c.Surname.ToLower().Contains(term.ToLower()));
-                        break;
                     case "Passport":
                         clients = clients.Where(c => c.Passport.ToLower().Contains(term.ToLower()));
                         break;
