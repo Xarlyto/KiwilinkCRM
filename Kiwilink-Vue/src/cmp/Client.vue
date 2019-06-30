@@ -124,9 +124,19 @@
                     </v-flex>
                     <v-flex xs12>
                       <v-textarea
-                        name="Background"
-                        label="Background Info"
-                        v-model="Client.Background"
+                        name="Education"
+                        label="Education History"
+                        v-model="Client.Education"
+                        class="ma-0 pa-0 mt-3 mr-3"
+                        :readonly="Client.ReadOnly"
+                        :background-color="formColor"
+                      ></v-textarea>
+                    </v-flex>
+                    <v-flex xs12>
+                      <v-textarea
+                        name="Work"
+                        label="Work Experience"
+                        v-model="Client.Work"
                         class="ma-0 pa-0 mt-3 mr-3"
                         :readonly="Client.ReadOnly"
                         :background-color="formColor"

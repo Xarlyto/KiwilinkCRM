@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.28606.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kiwilink", "Kiwilink.csproj", "{8250360A-BA87-4D81-A107-A45C13714CCF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoDB.Entities", "..\..\MongoDB.Entities\MongoDB.Entities\MongoDB.Entities.csproj", "{FACB1B7D-44C7-4E96-AB66-EF5C3851530F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8250360A-BA87-4D81-A107-A45C13714CCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8250360A-BA87-4D81-A107-A45C13714CCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8250360A-BA87-4D81-A107-A45C13714CCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FACB1B7D-44C7-4E96-AB66-EF5C3851530F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FACB1B7D-44C7-4E96-AB66-EF5C3851530F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FACB1B7D-44C7-4E96-AB66-EF5C3851530F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FACB1B7D-44C7-4E96-AB66-EF5C3851530F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,13 +12,13 @@ namespace Kiwilink.ViewModels
         {
             var tsk = new Task()
             {
-                ID = this.ID,
-                ClientName = this.ClientName,
-                Content = this.Content,
-                IsComplete = this.IsComplete,
-                AssignedEmployeeName = this.AssignedEmployeeName,
-                Client = this.Client.Queryable()
-                                    .Where(c => c.ID == this.Client.ID)
+                ID = ID,
+                ClientName = ClientName,
+                Content = Content,
+                IsComplete = IsComplete,
+                AssignedEmployeeName = AssignedEmployeeName,
+                Client = Client.Queryable()
+                                    .Where(c => c.ID == Client.ID)
                                     .Single()
                                     .ToReference()
             };

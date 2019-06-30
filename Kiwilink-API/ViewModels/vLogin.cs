@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
-using Kiwilink.Models;
+﻿using Kiwilink.Models;
 using MongoDB.Entities;
+using System.Linq;
 
 namespace Kiwilink.ViewModels
 {

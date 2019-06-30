@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq;
-using Kiwilink.Models;
+﻿using Kiwilink.Models;
 using MongoDB.Entities;
+using System;
+using System.Linq;
 
 namespace Kiwilink.ViewModels
 {
@@ -11,14 +11,14 @@ namespace Kiwilink.ViewModels
         public string[] CourseCountries { get; set; }
         public string[] Institutes { get; set; }
         public string[] Employees { get; set; }
-        
+
         public void Load()
         {
             try
             {
                 LeadSources = (from l in DB.Queryable<DropList>()
                                where l.Name.Equals("LeadSources")
-                               select l).SingleOrDefault().Values.OrderBy(v=>v).ToArray();
+                               select l).SingleOrDefault().Values.OrderBy(v => v).ToArray();
             }
             catch (Exception)
             {
@@ -36,7 +36,7 @@ namespace Kiwilink.ViewModels
             catch (Exception)
             {
 
-               CourseCountries = new string[0];
+                CourseCountries = new string[0];
             }
 
             try

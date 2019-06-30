@@ -1,13 +1,12 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 
 namespace Kiwilink
 {
     public static class Extensions
     {
-        public static string TitleCaseMe(this String value)
+        public static string TitleCaseMe(this string value)
         {
-            if(value == null)
+            if (value == null)
             {
                 return null;
             }

@@ -1,12 +1,11 @@
-﻿using System;
+﻿using MongoDB.Entities;
 using System.Collections.Generic;
-using MongoDB.Entities;
 
 namespace Kiwilink.Models
 {
     public class DropList : Entity
     {
         public string Name { get; set; }
-        public List<String> Values { get; set; } = new List<string>();        
+        public List<string> Values { get; set; } = new List<string>();
     }
 }

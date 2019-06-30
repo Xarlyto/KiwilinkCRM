@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MongoDB.Entities;
+using System;
 using System.Linq;
-using MongoDB.Entities;
 
 namespace Kiwilink.Models
 {
@@ -8,7 +8,7 @@ namespace Kiwilink.Models
     {
         public string Address { get; set; }
         public DateTime? ArrivalDate { get; set; }
-        public string Background { get; set; }
+        public string Education { get; set; }
         public string CV { get; set; }
         public string Course { get; set; }
         public string CourseCountry { get; set; }
@@ -31,6 +31,7 @@ namespace Kiwilink.Models
         public DateTime? VisaAppliedDate { get; set; }
         public DateTime? VisaApprovedDate { get; set; }
         public string VisaStatus { get; set; }
+        public string Work { get; set; }
 
         [Ignore]
         public bool Saving { get; set; }

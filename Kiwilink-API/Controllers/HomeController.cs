@@ -1,12 +1,11 @@
-﻿using System;
-using System.Linq;
-using Kiwilink.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Kiwilink.Models;
 using Kiwilink.ViewModels;
-using MongoDB.Driver.Linq;
-using MongoDB.Entities;
+using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using MongoDB.Entities;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Kiwilink.Controllers
 {
@@ -44,7 +43,7 @@ namespace Kiwilink.Controllers
         }
 
         [HttpGet("api/tasks/fetch/{employee}/{all}/{cid}")]
-        public ActionResult<Task[]> FetchTasks(string employee, Boolean all, string cid)
+        public ActionResult<Task[]> FetchTasks(string employee, bool all, string cid)
         {
             return new Task().FetchTasks(employee, all, cid);
         }
