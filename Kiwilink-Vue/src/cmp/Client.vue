@@ -151,6 +151,16 @@
                         :background-color="formColor"
                       ></v-text-field>
                     </v-flex>
+                    <v-flex xs12>
+                      <v-textarea
+                        name="Notes"
+                        label="Notes"
+                        v-model="Client.Notes"
+                        class="ma-0 pa-0 mt-3 mr-3"
+                        :readonly="Client.ReadOnly"
+                        :background-color="formColor"
+                      ></v-textarea>
+                    </v-flex>
                   </v-layout>
                 </v-card-text>
 

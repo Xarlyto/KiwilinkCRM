@@ -25,6 +25,7 @@ namespace Kiwilink.Models
         public string MinIELTS { get; set; }
         public string Mobile { get; set; }
         public string Name { get; set; }
+        public string Notes { get; set; }
         public string Passport { get; set; }
         public PathwayProgram[] Pathways { get; set; }
         public string Surname { get; set; }
